@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'Cafe24Ssurround';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+/* 게임 공용 */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #FFFCFA;
+    font-size: 24px; /* 글씨 크기 확대 */
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+	font-family: 'Cafe24Ssurround';
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer button {
+    font-family: 'S-CoreDream-3Light';
+	font-size : 20px;
+	font-weight : bold;
+}
+
+/* 사다리 게임 */
+.ladder-container {
+    position: relative;
+    width: 500px; /* 넓이 조정 */
+    height: 400px; /* 높이 조정 */
+    margin-top: 20px;
+}
+
+.ladder-line {
+    position: absolute;
+    width: 4px; /* 사다리 선 두께 조정 */
+    background-color: black;
+    height: 90%;
+}
+
+.ladder-step {
+    position: absolute;
+    height: 4px; /* 사다리 발판 두께 조정 */
+    background-color: black;
+    width: calc(33.33% - 3px); /* Adjust width to span between lines */
+}
+
+.ladder-line:nth-child(1) { left: 1.33%; }
+.ladder-line:nth-child(2) { left: 34.00%; }
+.ladder-line:nth-child(3) { left: 66.66%; }
+.ladder-line:nth-child(4) { left: 100%; transform: translateX(-100%); }
+.ladder-step:nth-child(5) { top: 10%; left: 1.33%; }
+.ladder-step:nth-child(6) { top: 20%; left: 34.00%; }
+.ladder-step:nth-child(7) { top: 30%; left: 66.66%; }
+.ladder-step:nth-child(8) { top: 40%; left: 1.33%; }
+.ladder-step:nth-child(9) { top: 50%; left: 34.00%; }
+.ladder-step:nth-child(10) { top: 60%; left: 66.66%; }
+.ladder-step:nth-child(11) { top: 70%; left: 34.00%; }
+.ladder-step:nth-child(12) { top: 80%; left: 66.66%; }
+.ladder-step:nth-child(13) {
+	top: 70%;
+	left: 1%;
+	transform: rotate(20deg);
+	width: calc(34.66%);
+}
+
+.choice-button {
+    font-size: 18px; /* 버튼 글씨 크기 확대 */
+    width: 50px; /* 버튼 크기 조정 */
+    height: 40px; /* 버튼 높이 조정 */
+    background-color: #fff;
+    border: 2px solid #FFCAA3;
+    border-radius : 3px;
+    cursor: pointer;
+}
+
+.choice-button:hover {
+    background-color: #e0e0e0;
+}
+
+.choice-button.selected {
+    background-color: #FFCAA3;
+}
+
+.choice-buttons {
+    display: flex;
+    justify-content: space-between; /* 버튼을 세로 줄에 맞게 분배 */
+    width: 100%;
+    max-width: 500px; /* 사다리 넓이와 맞추기 */
+    margin-bottom: 15px;
+}
+
+.choice-button:nth-child(1) {
+    margin-left: -20px; /* 1번 버튼을 왼쪽으로 이동 */
+}
+
+.choice-button:nth-child(4) {
+    margin-right: -20px; /* 4번 버튼을 오른쪽으로 이동 */
+}
+
+.result {
+    margin-top: 20px;
+    font-family: 'S-CoreDream-3Light';
+    font-size: 20px; /* 글씨 크기 확대 */
+    
+    width: 60px; /* 버튼 크기 조정 */
+    height: 30px; /* 버튼 높이 조정 */
+    background-color: #fff;
+    border: 2px solid #FFCAA3;
+    border-radius : 3px;
+    cursor: pointer;    
+}
+
+.result-box {
+    display: flex;
+    justify-content: space-between; /* 버튼을 세로 줄에 맞게 분배 */
+    width: 100%;
+    max-width: 500px; /* 사다리 넓이와 맞추기 */
+    
+    position : relative;
+    bottom : 7%;
+}
+
+.result:nth-child(1) {
+    margin-left: -23px; /* 1번 버튼을 왼쪽으로 이동 */
+}
+
+.result:nth-child(4) {
+    margin-right: -25px; /* 4번 버튼을 오른쪽으로 이동 */
+}
+
+.ladder-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #FFCAA3;
+    border : 3px solid gray;
+    border-radius: 50%;
+	display: none; /* 초기 상태에서 숨김 */
+}
+
+/* 주사위 게임 */
+.gif-image {
+    width: 200px; /* 이미지 크기 */
+    height: 200px; /* 이미지 크기 */
+    cursor: pointer;
+}
+
+.diceresult, .point {
+    margin-top: 20px;
+    font-family: 'S-CoreDream-3Light';
+    font-weight : bold;
+    font-size: 23px; /* 글씨 크기 확대 */
+}
+
+.start-text {
+    margin-top: 10px;
+    font-family: 'S-CoreDream-3Light';
+    font-size: 20px; /* 게임 시작 문구 글씨 크기 확대 */
+    font-weight : bold;
+    color: #333;
+}
+
+.result-image {
+    margin-top: 20px;
+}
+
+.result-image img {
+    width: 120px; /* 컴퓨터 선택 이미지 크기 */
+    height: 120px; /* 컴퓨터 선택 이미지 크기 */
+}
+
+/* 가위바위보 게임 */
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.animated-image {
+    width: 200px; /* 이미지 크기 확대 */
+    height: 200px; /* 이미지 크기 확대 */
+    background-size: cover;
+    animation: changeImage 1s infinite;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+@keyframes changeImage {
+    0% { background-image: url('/image/game/rock.png'); }
+    33% { background-image: url('/image/game/scissor.png'); }
+    66% { background-image: url('/image/game/paper.png'); }
+}
+
+.rsp-choice-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.rsp-choice-button {
+    width: 120px; /* 이미지 크기 확대 */
+    height: 120px; /* 이미지 크기 확대 */
+    background-size: cover;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.rspresult, .rspscore {
+    margin-top: 20px;
+    font-size: 23px; /* 글씨 크기 확대 */
+}
+
+.computer-choice {
+    margin-top: 20px;
+}
+
+.computer-choice img {
+    width: 120px; /* 컴퓨터 선택 이미지 크기 */
+    height: 120px; /* 컴퓨터 선택 이미지 크기 */
+}
+
+/* 두더지 잡기 게임 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #FFCAA3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;  /* 동그라미로 변경 */
+    cursor: pointer;
+}
+
+.mole {
+    width: 90%;
+    height: 90%;
+    background-image: url('/image/game/mole.png');  /* 두더지 이미지로 변경 */
+    background-size: cover;
+    border : 3px solid #FFCAA3;
+    border-radius: 50%;  /* 동그라미로 변경 */
+}
+
+#molescore, #timer {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 20px;
+	font-weight : bold;
+	text-align : center;
+	margin-top : 10px;
+}

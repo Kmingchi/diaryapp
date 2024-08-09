@@ -1,0 +1,111 @@
+ 
+@media screen{
+	
+}
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+h1{
+	font-size: 60px;
+	font-family: 'Cafe24Ssurround';
+}
+.main-background{
+	background-size: 1300px 1000px;
+    position: absolute;
+    margin: 5%;
+    background-image: url(/image/background/black.png);
+    background-repeat: no-repeat;
+    width:1300px;
+    height:1000px;
+}
+.header{
+	position: relative;
+    left: 40%;
+     top: 15%;
+}
+.logo-typo{
+	position: relative;
+	left: -31%;
+}
+.input-group{
+	position:relative;
+    width:400px;
+    height: 40px;
+    left: 47.5%;
+}
+
+.preview-box{
+	position:relative;
+	display:flex;
+    left: 26%;
+    top: 220px;
+	width:160px;
+	height:160px;
+	
+	border:1px solid black;
+	border-radius:100px;
+	
+	overflow:hidden;
+}
+.btn-upload {
+    position: relative;
+    left: 26%;
+   top: 240px;
+   width: 161px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-upload:hover{
+	background: rgb(77,77,77);
+    color: #fff;
+}
+.img-info{
+    position: relative;
+    left: 26%;
+    top: 245px;
+}
+
+#file {
+  display: none;
+}
+.email-checked-symbol{
+    position: absolute;
+    left: 79%;
+    top: 38%;
+}
+.id-checked-symbol{
+  position: absolute;
+    left: 79%;
+    top: 32.25%;
+}
+.username-checked-symbol{
+  position: absolute;
+    left: 79%;
+    top: 60.5%;
+}
+.input-error-msg{
+	position:absolute;
+	color:red;
+    left: 56%;
+     top: 66%;
+}
+.timer{
+    position: absolute;
+    left: 80%;
+    top: 43.5%;
+}
+button[type="submit"]{
+	position: relative;
+    left: 47.5%;
+    box-shadow: 2px 2px 5px #000;
+}

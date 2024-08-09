@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 주사위 던지기 </title>
+<link rel="stylesheet" href="/css/game/gamedesign.css">
+</head>
+<body>
+	<div class="container">
+        <h1>주사위 던지기</h1>
+        <img src="image/game/dice.gif" class="gif-image" onclick="rollDice()" alt="주사위 GIF">
+        <div class="start-text"> 게임을 시작하려면 주사위를 클릭하세요. </div>
+        <div id="diceresult" class="diceresult"></div>
+        <div id="point" class="point">총 점수: 0</div>
+        <div class="result-image" id="diceResult"></div>
+        <div class="footer">
+            <button onclick="window.location.href='/game'">돌아가기</button>
+        </div>
+    </div>
+    <script src="javascript/game/game.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+</html>

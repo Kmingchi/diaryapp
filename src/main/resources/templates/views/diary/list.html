@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/diary/list.css">
+	 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	 <script src="javascript/common/url.js"></script>
+</head>
+<script>
+//리스트 데이터를 담은 변수
+var data;
+
+var rainbow=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
+const DAYKOR=['일','월','화','수','목','금','토'];
+
+$.ajax({
+	type : "get",
+	url : serverURL+"/diary/list",
+	success : function(e){
+		data=e;
+		console.log(data);
+		//날짜 데이터를 담은 배열
+		var dateData=YearAndMonth();
+		makeComponent(dateData);
+		addScrollSpyEvent();
+		$('.nav-month-header + ul').slideUp(300);
+	},error : function(e){
+		console.log(e);
+	}
+})
+
+$(document).on('click','.nav-month-header',function(){
+    var ul=$(this).next('ul');
+    if (ul.is(':visible')) {
+        ul.slideUp(300);
+    } else {
+        $('.nav-month-header + ul').slideUp(300); 
+        ul.slideDown(300);
+    }
+})
+
+function YearAndMonth(){
+	let dataArr=[]
+	data.forEach((e)=>{
+		let date=new Date(e.date);
+		dataArr.push([date.getFullYear(),date.getMonth()+1,date.getDate()])
+	})
+	return dataArr;
+}
+function makeComponent(dataArr){
+	let year=0;
+	let month=0;
+	var listComponent=$('.list-component');
+	var listNav=$('.list-component-nav');
+	
+	for(let i=0;i<dataArr.length;i++){
+		//년도가 다르면 컴포넌트를 추가해야됨
+		if(year!=dataArr[i][0]){
+			year=dataArr[i][0];
+			
+			listComponent.append('<div id="'+year+'" class="year"><span class="year-header">'+year+'</span></div>');
+			listNav.append(`
+				<li><span class="nav-year-header">${year}년</span>
+					<ul id="nav-${year}">
+					</ul>
+				</li>
+			`)
+		}	
+		//월이 다르면 컴포넌트 추가
+		if(month!=dataArr[i][1]){
+			month=dataArr[i][1];
+			var yearComponent=$('#'+year);
+			var yearNav=$('#nav-'+year);
+			
+			yearComponent.append(`
+					<div id='${year}-${month}'class="month">
+						<span class="month-header">${month}월</span>
+					</div>
+			`);
+			yearNav.append(`
+					<li> <span class="nav-month-header">${month}월</span>
+						<ul id="nav-${year}-${month}">
+						</ul>
+					</li>
+			`);
+		}
+		var monthComponent=$('#'+year+'-'+month);
+		var monthNav=$('#nav-'+year+'-'+month);
+		monthComponent.append(`
+		<button class="modal-component" 
+					style="background:none; border:none;" 
+					onclick="addModalComponent(${i})"
+					data-bs-toggle="modal"
+					data-bs-target="#detailView">
+			<div id="${data[i].seq}"  class="component">
+				<span class="component-date">${dataArr[i][2]}</span>
+				<div class="component-day">${DAYKOR[new Date(data[i].date).getDay()]}</div>
+				<div class="component-title">${data[i].title}</div>
+				<div class="component-content">${data[i].content.substr(0,150)}
+					${data[i].content.length>150?'...':''}
+				</div>
+			</div>
+		</button>
+		`);
+		monthNav.append(`
+				<li><a href="#${data[i].seq}">${data[i].title}</a> </li>
+		`);
+	}//end of for
+	
+	listComponent.append(`
+	<div style="text-align:center; padding-bottom:2%;">
+		<button type="button" style="background-color:transparent; border:none;" class="goTop">
+		<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+		</svg>
+		</button>
+	</div>
+	`)
+	
+	$('.component-date').each(function(i,e){
+		var day=new Date(data[i].date).getDay();
+		if(day==0){
+			$(e).css('color','red');
+		}else if(day==6){
+			$(e).css('color','blue');
+		}
+	})
+}
+
+
+function addScrollSpyEvent(){
+	//스크롤스파이
+	$('.list-component').on('scroll', function() {
+		var container = $(this)[0];
+		var containerTop = container.getBoundingClientRect().top;
+		var containerBottom = containerTop + container.clientHeight;
+
+		var activeId = null;
+
+		$('.component').each(function() {
+			var elementTop = this.getBoundingClientRect().top;
+			var elementBottom = elementTop + $(this).outerHeight();
+			
+			if (elementTop >= containerTop && elementBottom <= containerBottom) {
+				activeId = $(this).attr('id');
+				//첫번째 요소가 보이면 그냥  break;
+				return false; 
+			}
+		});
+
+		if (activeId) {
+			$('.list-component-nav a').removeClass('active');
+			var activeLink = $('.list-component-nav a[href="#' + activeId + '"]');
+			
+			activeLink.addClass('active');
+			
+		 	scrollToActiveNavItem();
+		}
+		/*
+		$('.nav-month-header + ul').each(function() {
+			var activeUl=$(this);
+			if(activeUl.has($('a[class="active"]'))){
+				activeUl.slideDown();
+			}
+		})
+		*/
+	});
+	//부드럽게 움직이기 위한 이벤트
+	$('.list-component-nav a').on('click', function(e) {
+		e.preventDefault();
+		var targetElement = $($(this).attr('href'));
+		var scrollPosition = targetElement.position().top + $('.list-component').scrollTop();
+		$('.list-component').animate({
+			scrollTop: scrollPosition
+		}, 500);
+	});
+	
+	// 네비게이션 스크롤 동기화 함수
+	function scrollToActiveNavItem() {
+		var activeLink = $('.list-component-nav a.active');
+	    if (activeLink.length > 0) {
+	        var navContainer = $('.list-component-nav');
+	        var navScrollTop = activeLink.position().top + navContainer.scrollTop() - navContainer.height() / 2 + activeLink.height() / 2;
+
+	        navContainer.stop().animate({
+	            scrollTop: navScrollTop
+	        }, 250);
+	        
+            $('.nav-month-header + ul').not(activeLink.closest('ul')).slideUp(300);
+            activeLink.closest('ul').slideDown(300);
+	    }
+	}
+}
+//goTop 버튼 클릭 이벤트
+$(document).on('click', '.goTop', function() {
+    $('.list-component').animate({
+        scrollTop: 0
+    }, 500); 
+});
+
+function addModalComponent(i){
+	var header=$('.modal-header')
+	
+	header.html(`
+			${data[i].title} 
+	`)
+	$('.modal-body').html(`<input type="date" style="position:right;" value="${data[i].date}" disabled>`)
+	var body2=$('.modal-body2');
+	body2.html(data[i].content);
+}
+	
+</script>
+<body>
+	<div class="main-background">
+		<div class="list-component"></div>
+		<ul class="list-component-nav"></ul>
+	</div>
+<div id="detailView" class="modal fade modal-dialog" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header"></div>
+			<div class="modal-body"></div>
+			<hr>
+			<div class="modal-body2"></div>
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		        <button type="button" class="btn btn-primary">수정하기</button>
+	      </div>
+		</div>
+	</div>
+</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

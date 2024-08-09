@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 1280px) {
+	.main-background {
+		padding: 10px;
+	}
+}
+
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main-background{
+	position:absolute;
+	margin:50px;
+	background-image:url("./image/background/background_1300x1000.png");
+	background-repeat:no-repeat;
+	width:1290px;
+	height:1010px;
+}
+.logo{
+	position:relative;
+	background-image:url("./image/background/logo.png");
+	background-repeat:no-repeat;
+  	filter: drop-shadow(5px 5px 5px black);
+  	
+	width:350px;
+	height:330px;
+	
+	margin:auto;
+	top:190px;
+   
+}
+#login{
+	position: relative;
+    font-family: 'Cafe24Ssurround';
+    width: 350px;
+    height: 69px;
+    font-size: 38px;
+    left: 470px;
+    top: 360px;
+    box-shadow: 5px 5px 5px #000;
+}
+#register{
+	position: relative;
+    font-family: 'Cafe24Ssurround';
+    width: 350px;
+    height: 69px;
+    font-size: 38px;
+    left: 114px;
+    top: 460px;
+    box-shadow: 5px 5px 5px #000;
+}

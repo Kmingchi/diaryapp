@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "jwt",
+      "type": "com.main.properties.JwtProperties",
+      "sourceType": "com.main.properties.JwtProperties"
+    },
+    {
+      "name": "kakao",
+      "type": "com.main.properties.KakaoProperties",
+      "sourceType": "com.main.properties.KakaoProperties"
+    },
+    {
+      "name": "storage",
+      "type": "com.main.properties.GoogleUploadProperties",
+      "sourceType": "com.main.properties.GoogleUploadProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.issur",
+      "type": "java.lang.String",
+      "sourceType": "com.main.properties.JwtProperties"
+    },
+    {
+      "name": "jwt.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.main.properties.JwtProperties"
+    },
+    {
+      "name": "kakao.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.main.properties.KakaoProperties"
+    },
+    {
+      "name": "kakao.key",
+      "type": "java.lang.String",
+      "sourceType": "com.main.properties.KakaoProperties"
+    },
+    {
+      "name": "kakao.redirect-uri",
+      "type": "java.lang.String",
+      "sourceType": "com.main.properties.KakaoProperties"
+    }
+  ],
+  "hints": []
+}

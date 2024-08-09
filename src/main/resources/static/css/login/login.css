@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 다크모드 쉽게 할 수 있다고 해서 테스트
+html{
+	filter:invert(100%) hue-rotate(180deg);
+}
+*/
+.login-logo h1{
+	position:relative;
+   left: 20%;
+    color:black;
+	font-family: 'Cafe24Ssurround';
+}
+.main-background{
+	background-size: 1300px 1000px;
+    position: absolute;
+    margin: 5%;
+    background-image: url(/image/background/black.png);
+    background-repeat: no-repeat;
+    width: 1310px;
+    height: 1030px;
+}
+.user-input-box{
+    position: relative;
+    left: 33%;
+    top: 19%;
+    width: 720px;
+}
+.input-group-text{
+	height: 58px;
+    width: 53px;
+}
+.input-group{
+    margin: 3% 0%;
+}
+.userInput{
+      width: 330px;
+}
+button#login{
+    font-family: 'ONE-Mobile-POP';
+    font-size: 20px;
+    letter-spacing: 2px;
+	 left: 9.5%;		
+    width: 260px;
+    height: 50px;
+    border-radius:5px 5px 5px 5px;
+}
+.text-muted{
+    position: relative;
+   left: -26%;
+    top: 70px;
+}
+a{
+	text-decoration:none;
+}
+small > span > a:hover{
+	text-decoration:underline;
+	color:black;
+}
+.border-line{
+    position: relative;
+    left: 31%;
+    top: 23%;
+    width: 430px;
+}
+.kakao-login-img{
+    position: relative;
+    width: 260px;
+    height: 65px;
+   left: 38%;
+    top: 250px;
+    border-radius: 10px;
+}
+.naver-login-img{
+    position: relative;
+    width: 260px;
+    height: 65px;
+     left: 17.7%;
+    top: 350px;
+    border-radius: 10px;
+}
+.error-box{
+    margin-top: 2%;
+	color:red;
+}
+.modal_nickname{
+    width: 50%;
+}
+.simple_modal_errorMsg1{
+	color:red;
+}
+.simple_modal_errorMsg2{
+	color:red;
+}

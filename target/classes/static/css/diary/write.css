@@ -1,0 +1,370 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MangoDdobak-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.main-background{
+	background-size: 81.25em 62.5em;
+    position: absolute;
+    margin:5%;
+    background-image: url(/image/background/black.png);
+    background-repeat: no-repeat;
+    width:1300px;
+	height:1000px;
+}
+.main-box{
+    position: absolute;
+    left: 4%;
+    top: 14%;
+}
+.content-title{
+	position:relative;
+  	left: 94%;
+    top: 40px;
+    font-family:'Cafe24Ssurround';
+    font-size: 4.5rem;
+}
+/* ------------- 글쓰기 박스 ------------------*/
+.write-box{
+	position:relative;
+    margin: 7%;
+	/*
+    left: 12%;
+    top: 100px;
+    */
+    width: 770px;
+    height: 470px;
+    border-radius: 3px;
+    animation: fadeInDown 1s;
+}
+ trix-editor figure {
+    display: block !important;
+    margin: 0 !important;
+    width: 40% !important;
+  }
+  trix-editor .attachment__caption{
+  	text-align:center;
+  }
+
+  trix-editor img {
+    display: block;
+    max-width: 270px;
+    height: auto;
+  }
+  
+  trix-editor .attachment__name{
+  	display:none;
+  }
+  trix-editor .attachment__size{
+  	display:none;
+  }
+
+.size-indicator{
+	position:relative;
+    left: 2%;
+    top: 3%;
+	z-index:3;
+}
+input.title{
+	font-family:MangoDdobak-B;
+	font-size: 15px;	
+}
+/*
+div.title{
+    height: 80px;
+}
+*/
+
+.content{
+	font-family:Ownglyph_ryuttung-Rg;
+	font-size: 25px;
+	height: 378px;
+	resize:none;
+	-ms-overflow-style:none;
+	scrollbar-width:none;
+}
+.content::-webkit-scrollbar{
+	display:none;
+}
+.radio-input {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     opacity: 0.7;
+ }
+/* ------------- 글쓰기 박스 ------------------*/
+/* ------------- 이미지 박스  ---------------- */
+.upload{
+	position:relative;
+    left: -2%;
+    width: 180px;
+    height: 50px;
+    padding-top: 10px;
+    margin: 10px;
+    font-size:23px;
+    text-align:center;
+	background-color:#F6BB43;
+	border-color:red;
+	border-radius:5px;
+	color:black;
+}
+.temp{
+	margin-top:30px;
+}
+.upload:hover{
+	background-color:orange;
+	color:white;
+}
+.image-box{
+	position:relative;
+        left: 118%;
+       top: -502px;
+    width: 390px;
+    height: 510px;
+    border-radius: 3px;
+    animation: fadeInDown 1s;
+}
+.preview{
+    width: 400px;
+    height: 600px;
+    border:3px solid black;
+    border-radius: 10px;
+}
+.carousel-indicators{
+    bottom: -18px;
+}
+input[type='file']{
+	display:none;
+}
+.carousel{
+	display:none;
+}
+.carousel-item img{
+	max-height:600px;
+	border-radius:15px;
+}
+.icon_img_1{
+	position:relative;
+    left: 29%;
+    top: 30%;
+    z-index: 3;
+    width: 170px;
+    height: 80px;
+}
+#deleteBtn{
+	position:relative;
+	background-color:#f05650;
+    left: -2%;
+	color:white;
+}
+#deleteBtn:hover{
+	transition:0.5s;
+	background-color:red;
+}
+/* ------------- 이미지 박스  ---------------- */
+/* ------------- 스티커 박스  ---------------- */
+.sticker-box-option{
+    width: 272px;
+    display: block;
+    position: absolute;
+    left: 103%;
+    top: 2%;
+}
+.sticker-box-option button{
+	border-radius:15px;
+	background-color:#E2E2E2;
+    width: 120px;
+    height: 50px;
+}
+/* 초반엔 슬라이드형식으로 보여줌 */
+#grid{
+	background-color:#E2E2E2;
+}
+.grid{
+	display:none;
+}
+
+.sticker-box-option button svg{
+	width:30px;
+	height:30px;
+}
+.sticker-box{
+	animation: fadeInDown 1s;
+    position: absolute;
+    left: 103.5%;
+    top: 75px;
+      width: 343px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius:5px;
+    overflow:scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.sticker-box::-webkit-scrollbar {
+    display: none; 
+}
+.sticker-header{
+	display: block;
+    border-radius: 5px;
+    padding-left: 5px;
+	margin: 12px;
+    background-color: gray;
+    color: white;
+    font-family: 'GmarketSansMedium';
+    font-size: 25px;
+    width: 316px;
+}
+.sticker-header:hover{
+	cursor:pointer;
+	animation: slide-left 0.5s;
+	animation-fill-mode:forwards;
+}
+
+  @keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+  }
+}
+ #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+ul { list-style-type:none }
+
+.sticker-component {display:none;}
+
+.sticker-component li { margin-top:5px; }
+
+img.sticker-img{
+    width: 90px;
+   height: 90px;
+}
+
+img.sticker-img:hover {
+	border:1px solid red;
+}
+
+
+ input[type='radio']{
+	display:none;
+}
+
+/* ------------- 스티커 박스  ---------------- */
+/* ------------- footer --------*/
+.tempLoad{
+	display:none;
+	position:absolute;
+	animation:slide-bl 0.25s;
+	animation-fill-mode:forwards;
+}
+.tempSave{
+	display:none;
+	position:absolute;
+	animation:slide-br 0.25s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes slide-bl {
+  0% {
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: translateY(20px) translateX(-50px);
+            transform: translateY(20px) translateX(-50px);
+  }
+}
+
+@keyframes slide-br {
+  0% {
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: translateY(20px) translateX(50px);
+            transform: translateY(20px) translateX(50px);
+  }
+}
+
+.isPublic{
+	width: 160px;
+    position: absolute;
+    left: 111%;
+    top: 97%;
+}
+
+.isPublic .form-check-input{
+    width: 70px;
+    height: 30px;
+}
+.isPublic label{
+    margin-left: 5%;
+    font-size: 27px;
+}
+ 
+ .isPublic label:hover{
+    -webkit-text-stroke: 1px blue;
+}
+.tag{
+    position: absolute;
+    left: 6.5%;
+    top: 113%;
+}
+.load-temp{
+	visibility:hidden;
+    position: relative;
+    left: 74%;
+    top: -949px;
+}
+.save-temp{
+	position:relative;
+    left: 129%;
+    top: 124px;
+}
+.submit{
+	position:relative;
+     left: 143%;
+    top: 85px;
+}
+
+.clicked{
+     color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+}
+@keyframes fadeInDown {
+       0% {
+           opacity: 0;
+           transform: translate3d(0, -100%, 0);
+       }
+       to {
+           opacity: 1;
+           transform: translateZ(0);
+       }
+   }
+   
+ 

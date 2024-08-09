@@ -1,0 +1,592 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'Cafe24Ssurround';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+* {
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	font-family: 'Cafe24Ssurround';
+}
+
+iframe {
+	border : none;
+	width : 100%;
+	height : 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);	
+}
+
+/* 달력 */
+section {
+	width: 70%;
+	height:70%;
+	margin-bottom: 30px;
+	position: absolute;
+	left: 50%;
+	top: 57%;
+	transform: translate(-50%, -50%);
+}
+
+/* 달력 - 년월 */
+.title {
+	display: flex;
+	justify-content: space-evenly;
+	color: #212121;
+	font-size: 27px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.next i, .prev i{
+	color: rgb(132, 132, 132);
+	font-size: 22px;
+	margin-top: 10px;
+}
+
+/* 달력 - 요일, 날짜 */
+thead td {
+	width: 200px;
+	height: 60px;
+	font-weight: 700;
+	font-size : 17px;
+	color: #212121;
+	
+}
+
+tbody td {
+	width: 200px;
+	height: 30px;
+	font-size : 16px;
+	cursor: pointer;
+	color: rgb(90, 90, 90);
+	transform: scale(1.0);
+	transition: transform .5s;
+} 
+
+tbody td:hover {
+	transform: scale(1.2);
+	transition: transform .5s;
+}
+
+.calendar {
+	text-align: center;
+	margin: 0 auto;
+	height: 430px;
+}
+
+.date {
+	height: 15px;
+}
+
+.contents {
+	height: 55px;
+	padding : 10px;
+}
+
+/* 모달 */
+#modalWrap, #modalWrap-2, #detailModalWrap {
+	position: fixed;
+	z-index: 1;
+	padding-top: 200px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+	display: none;
+}
+
+#modalBody {
+	position: relative;
+	width: 500px;
+	height: 500px;
+	padding: 30px 30px;
+	bottom: 8%;
+	margin: 0 auto;
+	border: 1px solid rgb(205, 205, 205, 0.4);
+	background-color: white;
+	border-radius: 50%;
+	text-align: center;
+
+}
+
+/* 이모티콘 선택 모달 */
+.imoticon {
+	display: inline-block;
+	width: 30%;
+	height: 30%;
+	background-color:rrgb(205, 205, 205);
+	transform: scale(1.0);
+	transition: transform .5s;
+}
+
+.imoticon:hover {
+	transform: scale(1.2);
+	transition: transform .5s;
+}
+	
+#smile{
+	position: absolute;
+	left: 12%;
+	top: 63%;
+}
+
+#relax {
+	position: absolute;
+	left: 3%;
+	top: 35%;
+}
+
+#excited {
+	position: absolute;
+	left: 21%;
+	top: 10%;
+}
+
+#surprised {
+	position: absolute;
+	left: 50%;
+	top: 10%;
+}
+
+#sad {
+	position: absolute;
+	left: 68%;
+	top: 33%;
+}
+
+#angry {
+	position: absolute;
+	right: 12%;
+	top: 63%;
+}
+	
+#modalBody img {
+	position: relative;
+	width: 100px;
+	height: 100px;
+}
+
+.line-box {
+	display: inline-block;
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -80%);
+}
+	
+i {
+	font-size: 3rem;
+	color: rgb(77, 77, 77);
+	cursor: pointer;
+}
+
+#closeBtn {
+	position: absolute;
+	right: 5%;
+}
+	
+/* 내용 입력 모달 */
+#modalBody-2 {
+	position: relative;
+	width: 800px;
+	height: 500px;
+	bottom: 15%;
+	padding: 30px 30px;
+	margin: 0 auto;
+	border: 2px solid black;
+	border-radius : 10px;
+	background-color: #fff;
+	text-align: center;
+}
+
+.diary-box {
+	position: absolute;
+	left: 43%;
+	top: 15%;
+	
+	width: 380px;
+	height: 360px;
+	font-size: 25px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: #F7F7F7;
+	
+	overflow : auto;
+	overflow-x : hidden;
+}
+
+.btngroup {
+	position : absolute;
+	top : 75%;
+	left : 10%;
+	margin-top : 5px;
+	margin-left : 2px;
+}
+
+.btn-input {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 15px;
+	width : 120px;
+	padding : 5px;
+	margin-right : 10px;
+
+	border : none;
+	border-radius : 3px;
+	background-color : #FAECC5;
+	
+	position : absolute;
+	top : 6%;
+	right : 10%;
+}
+
+.btn-input:hover {
+	background-color : #F0B432;
+}
+
+.todo {
+	position: absolute;
+	top: 65%;
+	left : 9%;
+	margin-left : 10px;
+}
+
+#todo-input {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	width: 200px;
+	padding: 5px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+button#add, #save {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	margin-right : 5px;
+	
+	width: 95px;
+	padding: 5px;
+	background-color: #35B62C;
+	color: white;
+	border : none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+button#add:hover, #save:hover {	
+	background-color : #119208
+}
+
+ul#todo-list {
+	list-style-type: none;
+	padding: 0;
+	
+	position : relative;
+	top : 5%;
+	left : 10%;
+}
+
+ul#todo-list li {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;	
+	text-align : left;
+	padding : 0 10px;
+	
+	list-style-image: url('/image/icons/todo.svg');
+	margin-top : 10px;
+}
+
+.delete-btn {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	position: absolute;
+	right : 3%;
+	
+	width: 60px;
+	padding: 5px;
+	margin : 5px;
+	background-color: tomato;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.delete-btn:hover {
+	background-color: #c82333;
+}
+
+/* 작성 모달 안 이모지 */
+#img-box {
+	display: inline-block;
+	position: absolute;
+	left: 12%;
+	top: 15%;
+}
+
+.in-modal-imoticon {
+	width: 160px;
+	height: 160px;
+}
+
+.modal-date {
+	position: absolute;
+	left: 12%;
+	top: 50%;
+	font-size: 50px;
+	font-weight: 500;
+	color: rgb(77, 77, 77);
+}
+
+/* 제목 입력 */
+.modal-input-title {
+	position: absolute;
+	width: 300px;
+	left: 35%;
+	top: 30%;
+}
+
+.input-title {
+	font-size: 15px;
+	color: #222222;
+	width: 300px;
+	border: none;
+	border-bottom: solid #aaaaaa 1px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	position: relative;
+	background: none;
+	z-index: 5;
+}
+
+.input-title::placeholder { color: #aaaaaa; }
+.input-title:focus { outline: none; }
+
+.input-span {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0%;/* right로만 바꿔주면 오 - 왼 */
+	background-color: #666;
+	width: 0;
+	height: 2px;
+	border-radius: 2px;
+	transition: 0.5s;
+}
+
+label {
+	position: absolute;
+	color: #aaa;
+	left: 10px;
+	font-size: 20px;
+	bottom: 8px;
+	transition: all .2s;
+}
+
+.input-title:focus ~ label, .input-title:valid ~ label {
+	font-size: 16px;
+	bottom: 40px;
+	color: #666;
+	font-weight: bold;
+}
+
+.input-title:focus ~ .input-span, .input-title:valid ~ .input-span {
+	width: 100%;
+}
+
+.contents img {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+	height: 50px;
+}
+
+/* 상세보기 모달 */
+#detailModalBody {
+	position: relative;
+	width: 800px;
+	height: 500px;
+	bottom: 15%;
+	padding: 30px 30px;
+	margin: 0 auto;
+	border: 2px solid black;
+	border-radius : 10px;
+	background-color: #fff;
+	text-align: center;
+}
+
+.diary-box2 {
+	position: absolute;
+	left: 43%;
+	top: 15%;
+	
+	width: 380px;
+	height: 360px;
+	font-size: 25px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: #F7F7F7;
+	
+	overflow : auto;
+}
+
+#detail-title {
+    font-size: 23px;
+	z-index : 10;
+	position : absolute;
+	top : 40%;
+}
+
+#detail-modal-date {
+	position: absolute;
+	left: 15%;
+	top: 53%;
+	font-size: 45px;
+	font-weight: 500;
+	color: rgb(77, 77, 77);
+}
+
+#detail-img-box {
+	width: 100%;
+	max-width: 160px;
+	margin: 0 auto;
+	text-align: center;
+	
+	display: block;
+	position: absolute;
+	left: 12%;
+	top: 20%;
+}
+
+#detail-img-box img {
+	width: 150px;
+	height: 150px;
+}
+
+.todo-add {
+	position: absolute;
+	top: 65%;
+	left : 26%;
+	margin-left : 10px;
+}
+
+#todo-add {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	width: 200px;
+	padding: 5px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+button#newtodo {	
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	
+	width: 60px;
+	padding : 5px;
+	background-color: #35B62C;
+	color: white;
+	border : none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+button#newtodo:hover {	
+	background-color : #119208
+}
+
+#newtodo-list {	
+	list-style-type: none;
+	padding: 0;
+}
+
+.edit-btn {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	position: absolute;
+	right : 20%;
+	
+	width: 60px;
+	padding: 5px;
+	margin : 5px;
+	background-color: #35B62C;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.edit-btn:hover {
+	background-color: #119208
+}
+
+.edit-input {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	position: absolute;
+	right : 20%;
+	width : 200px;
+	maxlength : 10;
+}
+
+.save-edit {
+	font-family: 'S-CoreDream-3Light';
+	font-size : 18px;
+	position: absolute;
+	right : 3%;
+	
+	width: 60px;
+	padding: 5px;
+	margin-left : 10px;
+	background-color: #35B62C;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.save-edit:hover {
+	background-color: #119208
+}
+
+#closeDetailBtn {
+	position: absolute;
+	right: 5%;
+}
+
+@media screen and (max-width: 1280px) {
+	.sketch {
+		padding: 10px;
+	}
+	
+	#modalBody-2 {
+		left: 9%;
+		top: 12%;
+	}
+}

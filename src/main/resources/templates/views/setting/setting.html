@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 환경설정 </title>
+<link rel="stylesheet" href="/css/setting.css">
+<link rel="stylesheet" href="/css/navbar.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/749925e73b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<iframe src="/fragment/nav"></iframe>
+
+<div class="board">
+	<div class="board-body">
+		<div class="board-item">
+			<button type="button" class="btn-alert" data-bs-dismiss="offcanvas" aria-label="alert" onclick="showContent('alert')"> 알림 설정 </button>
+		</div>
+		<div class="board-item">
+			<button type="button" class="btn-theme" data-bs-dismiss="offcanvas" aria-label="alert" onclick="showContent('theme')"> 테마/언어 </button>
+		</div>
+		<div class="board-item">
+			<button type="button" class="btn-personal" data-bs-dismiss="offcanvas" aria-label="alert" onclick="showContent('personal')"> 개인 설정 </button>
+		</div>
+		<div class="board-item">
+			<button type="button" class="btn-friend" data-bs-dismiss="offcanvas" aria-label="alert" onclick="showContent('friend')"> 친구 관리 </button>
+		</div>
+		<div class="board-item">
+			<button type="button" class="btn-item" data-bs-dismiss="offcanvas" aria-label="alert" onclick="showContent('item')"> 아이템 관리 </button>
+		</div>
+		<div class="content" id="content-area"></div>
+	</div>
+	<!--
+	<div class="board-body-alert">
+		<h4> 알림 설정 </h4>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				소리 알림
+			</label>
+		</div>
+		<br>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				알림 일시 중지
+			</label>
+		</div>
+		<br>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				알림 해제
+			</label>
+		</div>
+		<div class="dropdown">
+			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				시간
+			</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="#"> 3시간 </a></li>
+				<li><a class="dropdown-item" href="#"> 6시간 </a></li>
+				<li><a class="dropdown-item" href="#"> 9시간 </a></li>
+				<li><a class="dropdown-item" href="#"> 12시간 </a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="board-body-type">
+		<h4> 알림 설정 </h4>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				표시 시간
+			</label>
+		</div>
+		<div class="dropdown-time">
+			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				시간
+			</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="#"> 3초 </a></li>
+				<li><a class="dropdown-item" href="#"> 5초 </a></li>
+				<li><a class="dropdown-item" href="#"> 7초 </a></li>
+			</ul>
+		</div>
+		<br>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				표시 방법
+			</label>
+		</div>
+		<div class="dropdown-type">
+			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				표시
+			</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="#"> 보낸 사람 </a></li>
+				<li><a class="dropdown-item" href="#"> 보낸 사람 + 메세지 </a></li>
+				<li><a class="dropdown-item" href="#"> 비공개 </a></li>
+			</ul>
+		</div>
+		<br>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">
+				표시 위치
+			</label>
+		</div>
+		<div class="dropdown-loca">
+			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				위치
+			</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="#"> 화면 우측 하단 </a></li>
+				<li><a class="dropdown-item" href="#"> 화면 우측 상단 </a></li>
+				<li><a class="dropdown-item" href="#"> 화면 좌측 하단 </a></li>
+				<li><a class="dropdown-item" href="#"> 화면 좌측 하단 </a></li>
+			</ul>
+		</div>
+	</div>
+	-->
+</div>
+
+<script src="/javascript/setting.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const iframe = document.querySelector("iframe");
+  iframe.onload = function() {
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const dropdownItems = iframeDocument.querySelectorAll(".dropdown-item");
+    dropdownItems.forEach(function(item) {
+      item.addEventListener("click", function() {
+        window.location.href = item.getAttribute("data-url");
+      });
+    });
+  };
+});
+</script>
+
+</body>
+</html>
