@@ -26,12 +26,21 @@ import lombok.RequiredArgsConstructor;
 public class JwtUtil {
 	
 	 private final JwtProperties jwtProperties;
+	 
+	 public String getUsernameUsingCookie(HttpServletRequest request) {
+		 Cookie token=CookieUtil.findCookie("Authorization", request);
+		 if(token==null) {
+			 return null;
+		 }
+		 String userId =getUsername(token.getValue());
+		 return userId;
+	 }
 
     public String getUsername(String token) {
        return getClaims(token).get("username",String.class);
     }
     
-    public Boolean isValidToken(String token) {
+    public boolean isValidToken(String token) {
        try {
     	   Jwts.parser()
 		    	   .setSigningKey(jwtProperties.getSecretKey())

@@ -227,3 +227,54 @@ ul li {
 li  {
 	padding: 2.25% 0%;
 }
+
+
+span.component-sticker {
+    position: absolute;
+    left: -5%;
+}
+/* 모달 */
+.attachment__name {
+	display:none
+}
+.attachment__size{
+	display:none;
+}
+.modal-body2{
+	padding:20px;
+}
+
+.modal-body2 img{
+	max-width:450px !important;
+	max-height:800px;
+}
+
+.dropdown input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown.show .dropdown-content {
+    display: block;
+}

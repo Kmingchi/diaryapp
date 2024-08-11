@@ -16,10 +16,10 @@ const DAYKOR=['일','월','화','수','목','금','토'];
 
 $.ajax({
 	type : "get",
-	url : serverURL+"/diary/list",
+	url : serverURL+"/api/diary?all=false",
 	success : function(e){
 		data=e;
-		console.log(data);
+		console.dir(data);
 		//날짜 데이터를 담은 배열
 		var dateData=YearAndMonth();
 		makeComponent(dateData);
@@ -87,24 +87,38 @@ function makeComponent(dataArr){
 		}
 		var monthComponent=$('#'+year+'-'+month);
 		var monthNav=$('#nav-'+year+'-'+month);
+		
+		//순수 문자열만 추출하기 위해
+		const parser=new DOMParser();
+		const doc=parser.parseFromString(data[i].content,"text/html");
+		
+		const elementsToRemove = doc.querySelectorAll('.attachment__name, .attachment__size');
+		elementsToRemove.forEach(element => element.remove());
+		
+		const textOnly=doc.body.textContent.trim();
+		console.log(textOnly);
+		
 		monthComponent.append(`
 		<button class="modal-component" 
 					style="background:none; border:none;" 
 					onclick="addModalComponent(${i})"
 					data-bs-toggle="modal"
 					data-bs-target="#detailView">
-			<div id="${data[i].seq}"  class="component">
+			<div id="${data[i].diaryId}"  class="component">
+				<span class="component-sticker">
+					${data[i].sticker!=null?"<img src="+data[i].sticker+">":""}
+				</span>
 				<span class="component-date">${dataArr[i][2]}</span>
 				<div class="component-day">${DAYKOR[new Date(data[i].date).getDay()]}</div>
 				<div class="component-title">${data[i].title}</div>
-				<div class="component-content">${data[i].content.substr(0,150)}
-					${data[i].content.length>150?'...':''}
+				<div class="component-content">${textOnly.substr(0,150)}
+					${textOnly.length>150?'...':''}
 				</div>
 			</div>
 		</button>
 		`);
 		monthNav.append(`
-				<li><a href="#${data[i].seq}">${data[i].title}</a> </li>
+				<li><a href="#${data[i].diaryId}">${data[i].title}</a> </li>
 		`);
 	}//end of for
 	
@@ -126,6 +140,14 @@ function makeComponent(dataArr){
 			$(e).css('color','blue');
 		}
 	})
+	
+	$('span.component-sticker > img').each(function(i,e){
+		console.log('hi');
+		let deg=(-1)*(Math.random()*20+10);
+		$(e).css('rotate',deg+"deg");
+		$(e).css('width','64px');
+		$(e).css('height','64px');
+	});
 }
 
 

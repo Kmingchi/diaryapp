@@ -36,6 +36,7 @@
 					<label  for="title">제목</label>
 				</div>
 				<input type="hidden" id="x" name="content">
+				<input type="hidden" name="rawString">
 				<trix-editor input="x" id="editor" style="height: 590px; overflow-y:scroll;"></trix-editor>
 	
 			<div class="sticker-box-option">
@@ -63,8 +64,6 @@
 			  <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault" name="isPublic">
 			  <label class="form-check-label" for="flexSwitchCheckDefault">비공개</label>
 			</div>
-			<!--  이 밑에부터 css 넣어야됨 -->
-			<!--  태그 불러와서 저장하는 기능 추가해야됨 -->
 			<input type="hidden" name="tag">
 			<div class="tag">
 				<button type="button" class="btn btn-primary" 
@@ -74,8 +73,6 @@
 					# 태그
 				</button>
 			</div>
-			<!--  임시 저장 기능 넣어야됨 -->
-			<!-- action태그에 url javascript로 변경하면 될듯 -->
 			<div class="save-temp">
 				<button type="button" class="btn btn-secondary tempMother" onclick="tempClicked()">임시저장</button>
 				<button type="button" class="btn btn-secondary tempLoad" data-bs-toggle="offcanvas" data-bs-target="#tempOffcanvas" onclick="tempLoad()">불러오기</button>
@@ -136,7 +133,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="submit" class="btn btn-primary">저장</button>
+        <button type="button" class="btn btn-primary" onclick="submitProcess()">저장</button>
       </div>
     </div>
   </div>
@@ -150,6 +147,10 @@
   </div>
   <div class="tempOffBody offcanvas-body">
   </div>
+  <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+       <button type="button" class="btn btn-primary" onclick="submitProcess()">등록</button>
+     </div>
 </div>
 </form>
 </div>

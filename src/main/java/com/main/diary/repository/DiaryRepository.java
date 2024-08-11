@@ -10,4 +10,6 @@ import com.main.diary.dto.Diary;
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary,Integer>{
 	public ArrayList<Diary> findByUserId(String userId);
+	
+	public ArrayList<Diary> findByDate(String date);
 }

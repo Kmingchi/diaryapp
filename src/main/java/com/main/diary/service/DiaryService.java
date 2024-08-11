@@ -32,4 +32,7 @@ public class DiaryService {
 		return diaryRepo.findById(diaryId)
 				.orElseThrow(() -> new IllegalArgumentException("not found "));
 	}
+	public ArrayList<Diary> findByDate(String date) {
+		return diaryRepo.findByDate(date);
+	}
 }

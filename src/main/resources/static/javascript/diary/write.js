@@ -63,27 +63,8 @@ var loadData;
 			</div>
 		`;
 	}
-	/*
-  //slide
-  <span class="sticker-header"> Sticker Group 1</span>
-	<ul class="sticker-component">
-		<li>
-			 <img class="sticker-img" draggable="true" src="image/sticker/tempGroup1/1.png" >
-		</li>
-		
-		//grid
-		<div class="d-flex flex-row mb-3">
-			  <div class="p-2">
-					 <img class="sticker-img" draggable="true" src="image/sticker/tempGroup1/1.png" >
-				</div>
-			  <div class="p-2">
-					 <img class="sticker-img" draggable="true" src="image/sticker/tempGroup1/2.png" >
-			  </div>
-			  <div class="p-2">
-					 <img class="sticker-img" draggable="true" src="image/sticker/tempGroup1/2.png" >
-			  </div>
-		</div>
- */
+
+
 	//슬라이드 효과
  $(document).on('click','span',function(){
 	 if($('li').css('display')=='block' && $('li')!=this){
@@ -121,16 +102,16 @@ var loadData;
 	}
  });
  	
- 	//데이터가 있는지 확인
- 	const searchParams=new URLSearchParams(window.location.search)
- 	if(searchParams.has('temp')){
+	//데이터가 있는지 확인
+	const searchParams=new URLSearchParams(window.location.search)
+	if(searchParams.has('temp')){
 		data=ajaxGetFunction('/diary/temp/storageId?storageId='+searchParams.get('temp'));
 		console.log(data);
 		
 		$('input[name="title"]').val(data.title);
 		document.querySelector("trix-editor").editor.insertHTML(data.content);
 	}
- 	
+ 	imageLength=$('figure').length;
 }//end of window.onload
 //임시저장 관리
 var isTempClicked=false;
@@ -194,6 +175,7 @@ function tempSave(){
 	loadData=ajaxGetFunction('/diary/temp');
 }
 let isCalled=0;
+
 function beforeSubmit(){
 	if(isCalled==1){
 		return;
@@ -207,7 +189,17 @@ function beforeSubmit(){
 	}
 	if(imageLength==0){
 		//이미지가 없는 경우 무조건 비공개임
-		
+		//그냥 바로 저장
+		let data={
+			"title":$('input[name="title"]').val(),
+			"content":$('input[name="content"]').val(),
+			"sticker":$('input[name="sticker"]:checked').val(),
+			"isPublic":$('input[name="isPublic"]:checked').length,
+			"tagString":$('input[name="tag"]').val(),
+			"rawString":$('input[name="rawString"]').val(),
+		}
+		ajaxPostFunction("/api/diary",JSON.stringify(data));
+		location.href="/list";
 	}else{
 		//이미지가 있는 경우 대표이미지 설정
 		$('.imageRep').html('');
@@ -232,6 +224,24 @@ function beforeSubmit(){
 		},1000)
 	}
 }
+function submitProcess(){
+	if($('input[name="photo"]:checked').length==0){
+		alert("대표 이미지를 선택해주세요");
+		return;
+	}
+	let data={
+			"title":$('input[name="title"]').val(),
+			"content":$('input[name="content"]').val(),
+			"sticker":$('input[name="sticker"]:checked').val(),
+			"photo":$('input[name="photo"]:checked').val(),
+			"isPublic":$('input[name="isPublic"]:checked').length,
+			"tagString":$('input[name="tag"]').val(),
+			"rawString":$('input[name="rawString"]').val(),
+		}
+		ajaxPostFunction("/api/diary",JSON.stringify(data));
+		location.href="/list";
+}
+
 //trix 에디터 관리
 document.addEventListener('trix-attachment-add',(e)=>{
 	e.preventDefault();
@@ -255,7 +265,7 @@ document.addEventListener('trix-attachment-add',(e)=>{
 })
 document.addEventListener('trix-change',(e)=>{
 	var editor = document.querySelector("trix-editor").editor;
-	console.log(editor.getDocument().toString());
+	$('input[name="rawString"]').val(editor.getDocument().toString());
 })
 
 document.addEventListener('trix-attachment-remove',(e)=>{
