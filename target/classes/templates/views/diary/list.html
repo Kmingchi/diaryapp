@@ -14,6 +14,10 @@ var data;
 var rainbow=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
 const DAYKOR=['일','월','화','수','목','금','토'];
 
+$(function(){
+	$('.content').css("display","none");
+})
+
 $.ajax({
 	type : "get",
 	url : serverURL+"/api/diary?all=false",
@@ -227,8 +231,8 @@ function addModalComponent(i){
 	header.html(`
 			${data[i].title} 
 	`)
-	$('.modal-body').html(`<input type="date" style="position:right;" value="${data[i].date}" disabled>`)
-	var body2=$('.modal-body2');
+	$('.modal-body2').html(`<input type="date" style="position:right;" value="${data[i].date}" disabled>`)
+	var body2=$('.modal-body');
 	body2.html(data[i].content);
 }
 	
@@ -238,13 +242,13 @@ function addModalComponent(i){
 		<div class="list-component"></div>
 		<ul class="list-component-nav"></ul>
 	</div>
-<div id="detailView" class="modal fade modal-dialog" tabindex="-1">
-	<div class="modal-dialog modal-dialog-centered">
+<div id="detailView" class="modal fade" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header"></div>
-			<div class="modal-body"></div>
-			<hr>
 			<div class="modal-body2"></div>
+			<hr>
+			<div class="modal-body"></div>
 			<div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		        <button type="button" class="btn btn-primary">수정하기</button>

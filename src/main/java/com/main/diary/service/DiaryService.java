@@ -24,6 +24,10 @@ public class DiaryService {
 		return diaryRepo.findAll();
 	}
 	
+	public List<Diary>findByIsPublic(int isPublic){
+		return diaryRepo.findByIsPublic(isPublic);
+	}
+	
 	public ArrayList<Diary>findByUserID(String userId){
 		return diaryRepo.findByUserId(userId);
 	}

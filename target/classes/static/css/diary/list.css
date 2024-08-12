@@ -6,6 +6,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 a.active{
 	color:red;
 }
@@ -240,15 +241,15 @@ span.component-sticker {
 .attachment__size{
 	display:none;
 }
-.modal-body2{
+.modal-body{
 	padding:20px;
 }
 
-.modal-body2 img{
+.modal-body img{
 	max-width:450px !important;
-	max-height:800px;
+	max-height:650px;
 }
-
+/*
 .dropdown input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -278,3 +279,4 @@ span.component-sticker {
 .dropdown.show .dropdown-content {
     display: block;
 }
+*/

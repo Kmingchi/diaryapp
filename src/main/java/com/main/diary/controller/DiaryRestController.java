@@ -99,6 +99,10 @@ public class DiaryRestController {
 			return new ResponseEntity<List<Diary>>(diaryService.findByUserID(userId),HttpStatus.OK);
 		}
 	}
+	@GetMapping("/api/diary/timeline")
+	public ResponseEntity getPublicDiary(){
+		return new ResponseEntity<List<Diary>>(diaryService.findByIsPublic(1),HttpStatus.OK);		
+	}
 	
 	@GetMapping("/api/diary/diaryId/{diaryId}")
 	public ResponseEntity getDiaryByUserId(@PathVariable int diaryId) {

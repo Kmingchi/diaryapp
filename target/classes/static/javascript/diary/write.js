@@ -175,8 +175,18 @@ function tempSave(){
 	loadData=ajaxGetFunction('/diary/temp');
 }
 let isCalled=0;
-
+let lastClickTime = 0;
 function beforeSubmit(){
+	const currentTime = new Date().getTime();
+    const timeDiff = currentTime - lastClickTime;
+
+    // 일정 시간 이내에 다시 클릭한 경우 이벤트를 무시
+    if (timeDiff < 500) {
+        e.preventDefault();
+        return;
+    }
+
+    lastClickTime = currentTime;
 	if(isCalled==1){
 		return;
 	}
