@@ -249,6 +249,14 @@ span.component-sticker {
 	max-width:450px !important;
 	max-height:650px;
 }
+.backButton{
+    position: absolute;
+    left: 60px;
+    top: 140px;
+}
+.backButton:hover{
+	cursor:pointer;
+}
 /*
 .dropdown input[type="text"] {
     width: 100%;

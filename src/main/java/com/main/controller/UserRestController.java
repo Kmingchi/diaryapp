@@ -131,7 +131,12 @@ public class UserRestController {
 			if(filePath.size()==0) {
 				log.info("error : 파일없음");
 			}
-			user=new UserDTO(user_id,nickname,password,email,filePath.get(0));
+			if(filePath.get(0)!=null) {
+				user=new UserDTO(user_id,nickname,password,email,filePath.get(0));
+			}else {
+				user=new UserDTO(user_id,nickname,password,email,"image/login/temp_default_img.png");
+			}
+			
 			log.info("저장하려는 정보 : "+user);
 			User u=userService.saveUser(user);
 			//저장 성공한거임

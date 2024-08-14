@@ -1,12 +1,16 @@
 package com.main.user.dto;
 
+
+import org.springframework.stereotype.Component;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
-@RequiredArgsConstructor
-public class UserProfileDTO {
-    private String profile_image;
-    private String nickname;
-    private String email;
+@Component
+public interface UserProfileDTO {
+	String getProfileImage();
+    String getNickname();
+    String getEmail();
+
 }

@@ -1,5 +1,6 @@
 package com.main.user.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +25,7 @@ public interface UserRepository extends JpaRepository<User,String>{
 	
 	Optional<User> findByEmailOrUserIdOrNickname(String email,String user_id,String nickname);
 	
-	@Query(value="select profile_image,nickname,email from User_db where user_id:userId" ,nativeQuery=true)
-	Optional<UserProfileDTO> getSpecific(@Param(value="userId") String userId);
+	@Query(value = "SELECT u.profile_image as profileImage , u.nickname as nickname , u.email as email FROM user_db u WHERE u.user_id = :userId", nativeQuery = true)
+	Optional<UserProfileDTO> getSpecific(@Param("userId") String userId);
+
 }

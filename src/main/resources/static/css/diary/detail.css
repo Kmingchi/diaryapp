@@ -143,15 +143,87 @@
 .comment-area{
 	width:450px;
 	height:550px;
+
+	/*
 	border:1px solid black;
+	*/
+	overflow-y:scroll;
+	border-bottom:5px solid black
 }
+.comment-area::-webkit-scrollbar {
+    width: 10px;
+ }
+ .comment-area::-webkit-scrollbar-thumb {
+   background-color: #2f3542;
+   border-radius: 10px;
+ }
+ .comment-area::-webkit-scrollbar-track {
+   background-color: grey;
+   border-radius: 10px;
+   box-shadow: inset 0px 0px 5px white;
+ }
+
+
 
 .comment-input{
 	position:absolute;
     top: 80%;
 }
+
+.comment-delete:hover{
+	cursor:pointer;
+}
+
+#commentInput{
+	padding:6px;
+	border:3px solid black;
+	border-radius:10px;
+}
+
 .comment-input button{
     margin-left: -4px;
     margin-top: -26px;
+}
+
+.comment-input textarea{
+	padding:5px;
+}
+.comment-profileImg img{
+	width:32px;
+	height:32px;
+	border-radius:50%;
+}
+.comment-nickname{
+	font-family:Cafe24Ssurround;
+	font-size:15px;
+}
+.comment-reply-icon{
+    position: relative;
+    top: 64px;
+}
+.comment-reply-icon:hover,.comment-delete-icon:hover{
+    cursor:pointer;
+}
+
+
+.comment-parent-content{
+	display:inline-block;
+	font-family:Cafe24Ssurround;
+	font-size:15px;
+	margin:5px;
+	padding:10px;
+    width: 380px;
+    height: 100px;
+	border:3px solid black;
+	border-radius:10px;
+}
+.reply-input{
+	margin-left: 10px;
+}
+.reply{
+	margin-left: 120px;
+}
+.reply .comment-parent-content{
+	width: 250px;
 }
 
