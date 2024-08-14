@@ -12,25 +12,37 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="tag_db")
+@Table(name="comment_db")
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Tag {
+public class Comment {
 	@Id
-	@Column(name="tag_id")
+	@Column(name="comment_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int tagId;
+	private int commentId;
 	
-	@Column(name="tag_name")
-	private String tagName;
+	@Column(name="comment_parent_id")
+	private int commentParentId;
+	
+	@Column(name="comment_layer")
+	private int commentLayer;
 	
 	@Column(name="diary_id")
 	private int diaryId;
 	
+	@Column(name="user_id")
+	private String userId;
+	
+	@Column(name="text")
+	private String text;
+	
 	@Builder
-	public Tag(String tagName,int diaryId) {
-		this.tagName=tagName;
+	public Comment(int commentParentId,int commentLayer,int diaryId,String userId, String text) {
+		this.commentParentId=commentParentId;
+		this.commentLayer=commentLayer;
 		this.diaryId=diaryId;
+		this.userId=userId;
+		this.text=text;
 	}
 }
