@@ -50,7 +50,9 @@ $(document).ready(function() {
 			`
 		)
 	}
+
 	$('.grid-item img, .description').on('click',(e)=>{
+
 		location.href="/timeline/detail?diaryId="+e.target.dataset.diaryid;
 	})	
 

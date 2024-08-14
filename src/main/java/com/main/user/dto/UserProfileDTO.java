@@ -1,5 +1,6 @@
 package com.main.user.dto;
 
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -11,4 +12,5 @@ public interface UserProfileDTO {
 	String getProfileImage();
     String getNickname();
     String getEmail();
+
 }

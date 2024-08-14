@@ -143,6 +143,7 @@
 .comment-area{
 	width:450px;
 	height:550px;
+
 	/*
 	border:1px solid black;
 	*/
@@ -162,6 +163,8 @@
    box-shadow: inset 0px 0px 5px white;
  }
 
+
+
 .comment-input{
 	position:absolute;
     top: 80%;
@@ -176,10 +179,12 @@
 	border:3px solid black;
 	border-radius:10px;
 }
+
 .comment-input button{
     margin-left: -4px;
     margin-top: -26px;
 }
+
 .comment-input textarea{
 	padding:5px;
 }
@@ -221,3 +226,4 @@
 .reply .comment-parent-content{
 	width: 250px;
 }
+

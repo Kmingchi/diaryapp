@@ -234,3 +234,76 @@ input[id="flexCheckDefault"] {
 	border : 1px solid gray;
 	width : 110px;
 }
+.board-body-alert.type1 {
+	height: 90%;
+    top: 50%;
+    padding: 30px 20px;
+}
+
+.friend-management-container {
+     font-family: Arial, sans-serif;
+     width: 100%;
+     border: 1px solid #ccc;
+     padding: 20px;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+         justify-content: space-around;
+ }
+ .friend-management-container h2 {
+         margin-top: 0;
+   
+    padding-bottom: 10px;
+    position: absolute;
+    top: -22px;
+    left: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+ 
+ .friend-option {
+ display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+ }
+ .toggle-switch {
+     position: relative;
+     display: inline-block;
+     width: 60px;
+     height: 34px;
+     float: right;
+ }
+ .toggle-switch input {
+     opacity: 0;
+     width: 0;
+     height: 0;
+ }
+ .slider {
+     position: absolute;
+     cursor: pointer;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: #ccc;
+     transition: .4s;
+     border-radius: 34px;
+ }
+ .slider:before {
+     position: absolute;
+     content: "";
+     height: 26px;
+     width: 26px;
+     left: 4px;
+     bottom: 4px;
+     background-color: white;
+     transition: .4s;
+     border-radius: 50%;
+ }
+ input:checked + .slider {
+     background-color: #2196F3;
+ }
+ input:checked + .slider:before {
+     transform: translateX(26px);
+ }

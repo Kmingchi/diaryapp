@@ -1,17 +1,21 @@
 var dataTag;
 var userInfo;
+
 var commentData;
+
 $(function(){
 	const searchParams=new URLSearchParams(window.location.search)
 	if(searchParams.has('diaryId')){
 		data=ajaxGetFunction("/api/diary/diaryId/"+searchParams.get('diaryId'));
 		dataTag=ajaxGetFunction("/api/tag/"+data.diaryId);
 		userInfo=ajaxGetFunction("/user/specific/"+data.userId);
+
 		commentData=ajaxGetFunction("/api/comment/"+data.diaryId);
 		
 		console.log(dataTag);
 		console.log(userInfo);
 		console.log(commentData);
+
 	}else{
 		console.log("이상한 접근");
 		history.back();
@@ -19,7 +23,7 @@ $(function(){
 	
 	fillContentBox();
 	commentSection();
-	
+
 	function fillContentBox(){
 		$(".calendar-date").html(data.date);
 		$('.component-title').html(data.title);
@@ -38,6 +42,7 @@ $(function(){
 			)
 		})
 		
+
 		$('.component-profileId').html(userInfo.nickname);
 		$('.component-profileImg img').attr('src',userInfo.profileImage==null?'/image/login/temp_default_img.png':userInfo.profileImage);
 	}
@@ -182,3 +187,4 @@ function dataSend(e,inputData){
 		location.href=location.href;
 	}
 }
+

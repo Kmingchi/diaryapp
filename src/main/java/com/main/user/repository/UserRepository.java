@@ -27,4 +27,5 @@ public interface UserRepository extends JpaRepository<User,String>{
 	
 	@Query(value = "SELECT u.profile_image as profileImage , u.nickname as nickname , u.email as email FROM user_db u WHERE u.user_id = :userId", nativeQuery = true)
 	Optional<UserProfileDTO> getSpecific(@Param("userId") String userId);
+
 }
