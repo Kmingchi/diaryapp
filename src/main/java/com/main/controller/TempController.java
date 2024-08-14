@@ -53,6 +53,11 @@ public class TempController {
 		return "views/board/board";
 	}
 	
+	@GetMapping("/timeline/detail")
+	public String goTDetailPage() {
+		return "views/board/detail";
+	}
+	
 	@GetMapping("/private")
 	public String goPrivatePage() {
 		return "views/diary/private";
@@ -103,4 +108,6 @@ public class TempController {
 	public String goSettingPage() {
 		return "views/setting/setting";
 	}
+	
+	
 }

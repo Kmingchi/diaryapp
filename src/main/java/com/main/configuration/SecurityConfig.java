@@ -80,9 +80,7 @@ public class SecurityConfig {
 			  
 		http.authorizeHttpRequests((auth)-> auth
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/fragments/**").permitAll()
 				.requestMatchers("/login/*","/register").permitAll()
-				.requestMatchers("/game/**").permitAll()
 				.requestMatchers("/api/token/validation").permitAll()
 				.requestMatchers("/email/**","/user/**").permitAll()
 				.requestMatchers("/admin").hasRole("ADMIN")

@@ -182,7 +182,6 @@ function beforeSubmit(){
 
     // 일정 시간 이내에 다시 클릭한 경우 이벤트를 무시
     if (timeDiff < 500) {
-        e.preventDefault();
         return;
     }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.main.configuration.SecurityConfig;
 import com.main.user.dto.User;
 import com.main.user.dto.UserDTO;
+import com.main.user.dto.UserProfileDTO;
 import com.main.user.service.UserService;
 import com.main.util.FileUploadUtil;
 import com.main.util.GoogleUploadUtil;
@@ -49,6 +51,17 @@ public class UserRestController {
 			return new ResponseEntity<User>(u,HttpStatus.OK);
 		}catch(IllegalArgumentException e) {
 			return new ResponseEntity<User>(u,HttpStatus.NOT_FOUND);
+		}
+	} 
+	
+	@GetMapping("/user/specific/{userId}")
+	public ResponseEntity getProfile(@PathVariable String userId) {
+		UserProfileDTO u=null;
+		try {
+			u=userService.findSpecificByUserId(userId);
+			return new ResponseEntity<UserProfileDTO>(u,HttpStatus.OK);
+		}catch(IllegalArgumentException e) {
+			return new ResponseEntity<UserProfileDTO>(u,HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -118,7 +131,12 @@ public class UserRestController {
 			if(filePath.size()==0) {
 				log.info("error : 파일없음");
 			}
-			user=new UserDTO(user_id,nickname,password,email,filePath.get(0));
+			if(filePath.get(0)!=null) {
+				user=new UserDTO(user_id,nickname,password,email,filePath.get(0));
+			}else {
+				user=new UserDTO(user_id,nickname,password,email,"image/login/temp_default_img.png");
+			}
+			
 			log.info("저장하려는 정보 : "+user);
 			User u=userService.saveUser(user);
 			//저장 성공한거임

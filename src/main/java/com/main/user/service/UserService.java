@@ -1,12 +1,16 @@
 package com.main.user.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.main.user.dto.User;
 import com.main.user.dto.UserDTO;
+import com.main.user.dto.UserProfileDTO;
 import com.main.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +27,10 @@ public class UserService {
 	
 	public List<User> findAll(){
 		return userRepo.findAll();
+	}
+	public UserProfileDTO findSpecificByUserId(String userId) {
+		return userRepo.getSpecific(userId)
+				.orElseThrow(()->new IllegalArgumentException("Not Found"));
 	}
 	
 	public User findUser(String email,String user_id,String nickname) {
