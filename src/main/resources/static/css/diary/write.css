@@ -24,27 +24,32 @@
     font-weight: normal;
     font-style: normal;
 }
-.main-background{
-	background-size: 81.25em 62.5em;
-    position: absolute;
-    margin:5%;
-    background-image: url(/image/background/black.png);
-    background-repeat: no-repeat;
-    width:1300px;
-	height:1000px;
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
 }
+
+iframe {
+	border : none;
+	width : 100%;
+	height : 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);	
+}
+
 .main-box{
     position: absolute;
-    left: 4%;
-    top: 14%;
+    left: 13%;
+    top: 17%;
+    transform : translate(-50% -50%);
+    margin-left : 10px;
 }
-.content-title{
-	position:relative;
-  	left: 94%;
-    top: 40px;
-    font-family:'Cafe24Ssurround';
-    font-size: 4.5rem;
-}
+
 /* ------------- 글쓰기 박스 ------------------*/
 .write-box{
 	position:relative;
@@ -53,12 +58,12 @@
     left: 12%;
     top: 100px;
     */
-    width: 770px;
+    width: 720px;
     height: 470px;
     border-radius: 3px;
     animation: fadeInDown 1s;
 }
- trix-editor figure {
+  trix-editor figure {
     display: block !important;
     margin: 0 !important;
     width: 40% !important;
@@ -69,7 +74,7 @@
 
   trix-editor img {
     display: block;
-    max-width: 270px;
+    max-width: 250px;
     height: auto;
   }
   
@@ -78,6 +83,14 @@
   }
   trix-editor .attachment__size{
   	display:none;
+  }
+  
+  trix-editor .button-row {
+  	width : 320px;
+  }
+  
+  trix-editor::-webkit-scrollbar{
+	display:none;
   }
 
 .size-indicator{
@@ -88,7 +101,8 @@
 }
 input.title{
 	font-family:MangoDdobak-B;
-	font-size: 15px;	
+	font-size: 15px;
+	margin-bottom : 10px;
 }
 /*
 div.title{
@@ -138,8 +152,8 @@ div.title{
 }
 .image-box{
 	position:relative;
-        left: 118%;
-       top: -502px;
+    left: 118%;
+    top: -502px;
     width: 390px;
     height: 510px;
     border-radius: 3px;
@@ -185,10 +199,10 @@ input[type='file']{
 /* ------------- 이미지 박스  ---------------- */
 /* ------------- 스티커 박스  ---------------- */
 .sticker-box-option{
-    width: 272px;
+    width: 250px;
     display: block;
     position: absolute;
-    left: 103%;
+    left: 105%;
     top: 2%;
 }
 .sticker-box-option button{
@@ -198,24 +212,25 @@ input[type='file']{
     height: 50px;
 }
 /* 초반엔 슬라이드형식으로 보여줌 */
-#grid{
-	background-color:#E2E2E2;
+#grid, #slide {
+	background-color:#E6E6E6;
 }
 .grid{
 	display:none;
 }
 
 .sticker-box-option button svg{
-	width:30px;
-	height:30px;
+	width:35px;
+	height:35px;
 }
 .sticker-box{
 	animation: fadeInDown 1s;
     position: absolute;
-    left: 103.5%;
-    top: 75px;
-      width: 343px;
-    height: 500px;
+    left : 103%;
+    bottom: 10%;
+    transform : translate(-90% -50%);
+    width: 270px;
+    height: 350px;
     border: 1px solid black;
     border-radius:5px;
     overflow:scroll;
@@ -225,16 +240,19 @@ input[type='file']{
 .sticker-box::-webkit-scrollbar {
     display: none; 
 }
+
 .sticker-header{
 	display: block;
-    border-radius: 5px;
+    border : 3px solid #FAECC5;
+    border-radius: 3px;
     padding-left: 5px;
-	margin: 12px;
-    background-color: gray;
-    color: white;
+	margin: 15px;
+    background-color : #FAECC5;
+    color: black;
     font-family: 'GmarketSansMedium';
-    font-size: 25px;
-    width: 316px;
+    font-size: 23px;
+    font-weight : bold;
+    width: 250px;
 }
 .sticker-header:hover{
 	cursor:pointer;
@@ -252,16 +270,26 @@ input[type='file']{
             transform: translateX(-10px);
   }
 }
- #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+
+#sortable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0; 
+	width: 60%;
+}
+
 ul { list-style-type:none }
 
 .sticker-component {display:none;}
 
-.sticker-component li { margin-top:5px; }
+.sticker-component li {
+	margin-top:5px;
+}
 
 img.sticker-img{
-    width: 90px;
-   height: 90px;
+	width: 70px;
+	height: 70px;
+	margin-left : 2.5px;
 }
 
 img.sticker-img:hover {
@@ -311,44 +339,70 @@ img.sticker-img:hover {
 }
 
 .isPublic{
-	width: 160px;
+	width: 170px;
     position: absolute;
-    left: 111%;
-    top: 97%;
+    left: 87%;
+    top: 85%;
 }
 
 .isPublic .form-check-input{
-    width: 70px;
-    height: 30px;
+    width: 60px;
+    height: 25px;
 }
+
 .isPublic label{
-    margin-left: 5%;
-    font-size: 27px;
+    margin-left: 10px;
+	font-family: 'S-CoreDream-3Light';
+	font-weight : bold;
+    font-size: 22px;
 }
- 
- .isPublic label:hover{
-    -webkit-text-stroke: 1px blue;
+
+.form-check-input:checked {
+    background-color: #FAECC5;
+    border-color : #FAECC5;
 }
+
+.form-check-input:checked:before {
+    background-color: white;
+}
+
+.form-check-input {
+    background-color: #E6E6E6;
+    border-color: #E6E6E6;
+}
+
+.form-check-input:before {
+    background-color: white;
+}
+
 .tag{
     position: absolute;
-    left: 6.5%;
-    top: 113%;
+    left: 7%;
+    top: 85%;
+    font-family: 'S-CoreDream-3Light';
 }
+
 .load-temp{
 	visibility:hidden;
     position: relative;
     left: 74%;
     top: -949px;
 }
+
 .save-temp{
-	position:relative;
-    left: 129%;
-    top: 124px;
+	position: absolute;
+    left: 120%;
+    top: 85%;
+    width : 110px;
+    font-family: 'S-CoreDream-3Light';
 }
+
 .submit{
-	position:relative;
-     left: 143%;
-    top: 85px;
+	position: absolute;
+    left: 135%;
+    top: 85%;
+    width : 110px;
+    font-family: 'S-CoreDream-3Light';
 }
 
 .clicked{
@@ -367,4 +421,45 @@ img.sticker-img:hover {
        }
    }
    
- 
+/* 태그 팝업 모달 */
+.modal-dialog {
+	position : relative;
+	top : 23%;
+	tranform : translate(-50% -50%);
+}
+
+.tag-category {
+	margin : 5px;
+}
+
+.tag-category-content {
+	font-family: 'S-CoreDream-3Light';
+}
+  
+/* 임시저장 offcanvas */
+#offcanvasTopLabel {
+	font-family: 'GmarketSansMedium';
+	font-size : 25px;
+}
+
+.modal-footer-offcanvas {
+	position : absolute;
+	bottom : 3%;
+	right : 5%;
+}
+
+.cancel {
+	margin-right : 10px;
+}
+
+/* 대표 이미지 선택 */
+.modal-title {
+	font-family: 'GmarketSansMedium';
+	font-size : 25px;
+}
+
+.modal-footer {
+	position : absolute;
+	bottom : 3%;
+	right : 3%;
+}

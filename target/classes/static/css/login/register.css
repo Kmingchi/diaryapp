@@ -13,7 +13,7 @@ h1{
 	font-family: 'Cafe24Ssurround';
 }
 .main-background{
-	background-size: 1300px 1000px;
+	background-size: 1250px 800px;
     position: absolute;
     margin: 5%;
     background-image: url(/image/background/black.png);

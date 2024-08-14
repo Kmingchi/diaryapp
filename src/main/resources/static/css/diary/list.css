@@ -173,6 +173,9 @@ a.active{
     height: 260px;
    
 }
+.figure img{
+	max-width:270px;
+}
 
 .component:hover{
 	/*
@@ -247,7 +250,8 @@ span.component-sticker {
 
 .modal-body img{
 	max-width:450px !important;
-	max-height:650px;
+	height:100%;
+	max-height:500px;
 }
 .backButton{
     position: absolute;

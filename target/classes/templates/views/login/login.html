@@ -139,60 +139,65 @@ function userInputValidation(){
 </script>
 </head>
 <body>
-	<div class="main-background black">
+	<!-- 스케치북 -->
+	<div class="content">
+		<img class="board" src="image/background/black.png" alt="black">
+	</div>
+	
+	<div class="main-background">
 		<div class="user-input-box">
 			<div class="login-logo">
 				<!-- 나중에 a태그 링크 넣어야 됨 -->
-				<a href="#"><h1>비망록</h1></a>
+				<a><h1>비망록 로그인</h1></a>
 			</div>
 			<!-- 입력 일괄 제거 버튼 있으면 좋을 듯 -->
 			<!-- 사용하려면 넘어가는 값 name 으로 지정해야됨 -->
-		<form id="userInput" class="needs-validation" onsubmit="return userInputValidation()">
-			<div class="input-group">
-				<label for="id">
-					<span class="input-group-text" id="basic-addon1">
-						<img src="image/login/user-icon.png">
-					</span>
-					</label>
-					<div class="form-floating">
-						<!-- name 추가 안됨, 추가시 주석  삭제 -->
-						<input name="id" id="id" type="text" class="form-control userInput" placeholder="id@example.com" required>
-						<label  for="id">ID</label>
-					</div>
-			</div>
-		<div class="input-group">
-				<label for="password">
-					<span class="input-group-text" id="basic-addon1">
-						<img src="image/login/lock-icon.png">
-					</span>
-					</label>
-					<div class="form-floating">
-						<!-- name 추가 안됨, 추가시 주석 삭제 -->
-						<!-- 나중에 입력한 값을 볼 수 있는 버튼 있으면 좋을듯 -->
-						<input name="password" id="password" type="password" class="form-control userInput" placeholder="password" required>
-						<label  for="password">Password</label>
-					</div>
-			</div>
-			<!--  아이디 저장? 로그인 유지? 버튼 추가해야됨 -->
-			<div class="option-component">
-				<input type="checkbox" id="saveID">
-				<label for="saveID">아이디 저장</label>
-			</div>
-			<div class="error-box">에러</div>
-			<div class="input-group">
-			 	<button id="login" type="submit" class="btn btn-outline-dark">로그인</button>
-			 	<!-- 나중에 a태그 링크 넣어야 됨 -->
-			 	<small class="text-muted">
-			 		<span><a href="#" class="link-secondary" 
-			 						data-bs-toggle="modal"
-			 						data-bs-target="#idModal">아이디 찾기</a></span> /
-			 		<span><a href="#" class="link-secondary" 
-			 						data-bs-toggle="modal"
-			 						data-bs-target="#passwordModal">비밀번호 찾기</a></span> /
-			 		<span><a href="/register" class="link-secondary" > 회원가입</a></span>
-			 	</small>
-			</div>
-	</form>
+			<form id="userInput" class="needs-validation" onsubmit="return userInputValidation()">
+				<div class="input-group">
+					<label for="id">
+						<span class="input-group-text" id="basic-addon1">
+							<img src="image/login/user-icon.png">
+						</span>
+						</label>
+						<div class="form-floating">
+							<!-- name 추가 안됨, 추가시 주석  삭제 -->
+							<input name="id" id="id" type="text" class="form-control userInput" placeholder="id@example.com" required>
+							<label  for="id"> ID </label>
+						</div>
+				</div>
+				<div class="input-group">
+					<label for="password">
+						<span class="input-group-text" id="basic-addon1">
+							<img src="image/login/lock-icon.png">
+						</span>
+						</label>
+						<div class="form-floating">
+							<!-- name 추가 안됨, 추가시 주석 삭제 -->
+							<!-- 나중에 입력한 값을 볼 수 있는 버튼 있으면 좋을듯 -->
+							<input name="password" id="password" type="password" class="form-control userInput" placeholder="password" required>
+							<label  for="password"> Password </label>
+						</div>
+				</div>
+				<!--  아이디 저장? 로그인 유지? 버튼 추가해야됨 -->
+				<div class="option-component">
+					<input type="checkbox" id="saveID">
+					<label for="saveID">아이디 저장</label>
+				</div>
+				<div class="error-box">에러</div>
+				<div class="input-group">
+				 	<button id="login" type="submit" class="btn btn-outline-dark">로그인</button>
+				 	<!-- 나중에 a태그 링크 넣어야 됨 -->
+				 	<small class="text-muted">
+				 		<span><a href="#" class="link-secondary" 
+				 						data-bs-toggle="modal"
+				 						data-bs-target="#idModal">아이디 찾기</a></span> /
+				 		<span><a href="#" class="link-secondary" 
+				 						data-bs-toggle="modal"
+				 						data-bs-target="#passwordModal">비밀번호 찾기</a></span> /
+				 		<span><a href="/register" class="link-secondary" > 회원가입</a></span>
+				 	</small>
+				</div>
+			</form>
 		</div>
 		<div class="border-line">
 			<hr>
