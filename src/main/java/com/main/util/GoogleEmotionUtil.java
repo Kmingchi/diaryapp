@@ -48,10 +48,10 @@ public class GoogleEmotionUtil {
             String emotion;
             if(sentiment.getScore() < -0.2) {
             	emotion="부정";
-            }else if(sentiment.getScore() <= 0.2) {
-            	emotion="중립";
-            }else {
+            }else if(sentiment.getScore() > 0.2) {
             	emotion="긍정";
+            }else {
+            	emotion="부정";
             }
             return Map.of("score",Float.toString(sentiment.getScore()),
             		"magnitude",Float.toString(sentiment.getMagnitude()),

@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.main-background {
+	background-size: 1300px 1000px;
+	position: absolute;
+	margin: 50px;
+	background-image: url(/image/background/black.png);
+	background-repeat: no-repeat;
+	width: 1310px;
+	height: 1030px;
+}
+.back{
+	position:absolute;
+ 	left: 5%;
+    top: 16%;
+    border-radius:16px;
+}
+.content-box{
+	position:absolute;
+    left: 13%;
+    top: 16%;
+    width: 501px;
+    height: 750px;
+    /*
+	border:1px solid black;
+	*/
+}
+.comment-box{
+    position: absolute;
+ 	left: 58%;
+    top: 16%;
+    width: 474px;
+    height: 750px;
+	 /*
+	border:1px solid black;
+	*/
+}
+.component-date{
+	text-align:center;
+	border-bottom:5px solid black;
+}
+.calendar-date{
+	font-family:Cafe24Ssurround;
+	font-weight:bold;
+    font-size: 24px;
+}
+.component-title{
+	font-family:Cafe24Ssurround;
+	margin:5px;
+	font-size:25px;
+}
+.component-sticker{
+	position:absolute;
+    left: 89%;
+    top:0%;
+}
+.component-sticker img{
+	width: 64px;
+    height: 64px;
+}
+.component-profile{
+	position:absolute;
+   	top: 93%;
+}
+.component-content{
+	font-family:Cafe24Ssurround;
+	
+	padding:15px;
+	height: 550px;
+
+	border:5px solid black;
+	border-radius:10px;
+	
+	overflow-y:scroll;
+	overflow-x:hidden;
+	/*
+	 -ms-overflow-style: none; 
+    scrollbar-width: none;
+    */
+}
+.component-content::-webkit-scrollbar {
+    width: 10px;
+ }
+ .component-content::-webkit-scrollbar-thumb {
+   background-color: #2f3542;
+   border-radius: 10px;
+ }
+ .component-content::-webkit-scrollbar-track {
+   background-color: grey;
+   border-radius: 10px;
+   box-shadow: inset 0px 0px 5px white;
+ }
+ .component-content img{
+ 	max-width:270px; 
+ 	height:100%;
+ }
+.attachment__name, .attachment__size{
+	display:none;
+}
+ /*
+.component-content::-webkit-scrollbar{
+	 display: none; 
+}
+*/
+
+.component-profileImg img{
+	margin-left:10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.component-profileId{
+	margin-left: 35px;
+	font-family:Cafe24Ssurround;
+    font-size: 26px;
+}
+.component-like{
+    margin-left: 190px;
+}
+.heart{
+	margin-left:10px;
+    padding-right: 30px;
+	width:36px;
+	height:36px;
+	background-color:white;
+	border-radius:100%;
+}
+.heart svg {
+    fill: #e74c3c;
+    width: 24px;
+    height: 24px;
+}
+.component-tag button{
+	margin-left:5px;
+}
+
+.comment-area{
+	width:450px;
+	height:550px;
+	border:1px solid black;
+}
+
+.comment-input{
+	position:absolute;
+    top: 80%;
+}
+.comment-input button{
+    margin-left: -4px;
+    margin-top: -26px;
+}
+
