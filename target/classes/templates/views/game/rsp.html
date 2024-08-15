@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 가위바위보 </title>
+<link rel="stylesheet" href="/css/game/gamedesign.css">
+</head>
+<body>
+	<div class="container">
+        <div class="game-area">
+            <div class="rsp-choice-buttons">
+                <div class="rsp-choice-button" id="scissorsBtn" style="background-image: url('/image/game/scissors.png');" onclick="selectChoice('가위')"></div>
+                <div class="rsp-choice-button" id="rockBtn" style="background-image: url('/image/game/rock.png');" onclick="selectChoice('바위')"></div>
+                <div class="rsp-choice-button" id="paperBtn" style="background-image: url('/image/game/paper.png');" onclick="selectChoice('보')"></div>
+            </div>
+            <div id="rspresult" class="rspresult"></div>
+            <div id="rspscore" class="rspscore">총 점수: 0</div>
+            <div class="computer-choice" id="computerChoice"></div>
+        </div>
+        <div class="footer" id="foot">
+	   		<button onclick="window.location.href='game'" class="homebtn"> <img src="../../../../image/icons/home.svg" id="home"> </button>
+		</div>
+    </div>
+    <script src="/javascript/game/rsp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+</html>

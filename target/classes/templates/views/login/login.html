@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+ 	<script src="javascript/common/url.js"></script>
+ 	<script src="javascript/common/emailValidation.js"></script>
+ 	<link rel="stylesheet" href="css/login/login.css">
+	<meta charset="UTF-8">
+<script>
+
+window.onload=()=>{
+	//처음에 토큰이 있으면 그냥 바로 넘어감
+	$.ajax({
+		url:serverURL+"/api/token/validation",
+		method:"post",
+		dataType:"text",
+		success:function(e){
+			location.href=serverURL+"/private";
+		}, error:function(e){
+			console.log("토큰이 없음 / 로그인 필요");
+		}
+	})
+
+	var errorMsg=$('.error-box');
+	$('.simple_modal_errorMsg1').hide();
+	$('.simple_modal_errorMsg2').hide();
+	errorMsg.hide();
+	
+	//로컬스토리지에 값 있으면 불러와야됨
+	var localID=localStorage.getItem('id');
+	if(localID!=null){
+		var userID=$('#id');
+		var saveID=$("#saveID");
+		
+		userID.val(localID);
+		saveID.attr('checked',true);
+	}
+}
+//id="verifiyButton" data-bs-dismiss="modal"
+var isClicked=0;
+var isEmailValid=false;
+
+function setTimerAndEmailVerification(option){
+	var modalNextButton=$("#goNext"+option);
+	var verifyButton=$('#verifyButton');
+	if(isClicked>0){
+		setTimeout(function(){
+			isClicked--; 
+			modalNextButton.removeAttr('data-bs-toggle');
+		},1000);
+		return;
+	}
+	var modal_id=$("#modal_id").val();
+	var modal_email=$("#modal_email"+option).val();
+	var modalErrorMsg=$(".simple_modal_errorMsg"+option);
+	
+	//option 1 : id찾기 / 2 : pw 찾기 / 3 : 이메일 검증
+	var sendMessage=false;
+	if(option==1){
+		if(isEmailAlreadyExistInDB(modal_email)){
+			sendMessage=true;
+		}else{
+			modalErrorMsg.html("<b>아이디</b>가 올바르지 않습니다.");
+			modalErrorMsg.fadeIn(200);
+		}
+	}else if(option==2){
+		var data={
+				email:modal_email,
+				id:modal_id
+		}
+		if(ajaxGetFunction("/user/verification",data)){
+			sendMessage=true;
+		}else{
+			modalErrorMsg.html("<b>아이디</b> 또는 <b>이메일</b>이 올바르지 않습니다.");
+			modalErrorMsg.fadeIn(200);
+		}
+	}else{
+		var code=$('#verifyNumber').val();
+		var modal_email=$("#modal_email1").val()==null?$("#modal_email2").val():$("#modal_email1").val()
+		if(isRandomCodeIsValid(modal_email,code)){
+			afterData=ajaxGetFunction("/user",{email:modal_email});
+			alert("아이디는 "+afterData.userId+"입니다. ");
+			location.href=location.href;
+		}
+	}
+	
+	if(sendMessage){
+		sendRandomCodeToEmail(modal_email);
+		modalNextButton.attr('data-bs-toggle','modal');
+		modalErrorMsg.hide();
+		setTimer(180);
+		isClicked++;
+		modalNextButton.trigger('click');
+	}
+}
+function userInputValidation(){
+	var userID=$('#id');
+	var userPW=$('#password');
+	var errorMsg=$('.error-box');
+	var saveID=$("#saveID");
+	
+	if(userID.val()==''){
+		errorMsg.html('<b>아이디</b>를 입력해주세요');
+		errorMsg.fadeIn(200);
+		return false;
+	}
+	if(userPW.val()==''){
+		errorMsg.html('<b>비밀번호</b>를 입력해주세요');
+		errorMsg.fadeIn(200);
+		return false;
+	}
+	//로컬스토리지에 값 임시저장
+	if(saveID.is(':checked')){
+		localStorage.setItem('id',userID.val());
+	}else{
+		localStorage.removeItem('id');
+	}
+	
+	$.ajax({
+		url:serverURL+"/login",
+		method:"post",
+		dataType:"json",
+		data:{
+			username:userID.val(),
+			password:userPW.val()
+		},
+		success:function(e,statusCode,request){
+			consoel.log("성공함")
+		}, error:function(e){
+			console.log(e);
+		},complete:function(e){
+			location.href=location.href;
+		}
+	})
+	return false;
+}
+
+</script>
+</head>
+<body>
+	<!-- 스케치북 -->
+	<div class="content">
+		<img class="board" src="image/background/black.png" alt="black">
+	</div>
+	
+	<div class="main-background">
+		<div class="user-input-box">
+			<div class="login-logo">
+				<!-- 나중에 a태그 링크 넣어야 됨 -->
+				<a><h1>비망록 로그인</h1></a>
+			</div>
+			<!-- 입력 일괄 제거 버튼 있으면 좋을 듯 -->
+			<!-- 사용하려면 넘어가는 값 name 으로 지정해야됨 -->
+			<form id="userInput" class="needs-validation" onsubmit="return userInputValidation()">
+				<div class="input-group">
+					<label for="id">
+						<span class="input-group-text" id="basic-addon1">
+							<img src="image/login/user-icon.png">
+						</span>
+						</label>
+						<div class="form-floating">
+							<!-- name 추가 안됨, 추가시 주석  삭제 -->
+							<input name="id" id="id" type="text" class="form-control userInput" placeholder="id@example.com" required>
+							<label  for="id"> ID </label>
+						</div>
+				</div>
+				<div class="input-group">
+					<label for="password">
+						<span class="input-group-text" id="basic-addon1">
+							<img src="image/login/lock-icon.png">
+						</span>
+						</label>
+						<div class="form-floating">
+							<!-- name 추가 안됨, 추가시 주석 삭제 -->
+							<!-- 나중에 입력한 값을 볼 수 있는 버튼 있으면 좋을듯 -->
+							<input name="password" id="password" type="password" class="form-control userInput" placeholder="password" required>
+							<label  for="password"> Password </label>
+						</div>
+				</div>
+				<!--  아이디 저장? 로그인 유지? 버튼 추가해야됨 -->
+				<div class="option-component">
+					<input type="checkbox" id="saveID">
+					<label for="saveID">아이디 저장</label>
+				</div>
+				<div class="error-box">에러</div>
+				<div class="input-group">
+				 	<button id="login" type="submit" class="btn btn-outline-dark">로그인</button>
+				 	<!-- 나중에 a태그 링크 넣어야 됨 -->
+				 	<small class="text-muted">
+				 		<span><a href="#" class="link-secondary" 
+				 						data-bs-toggle="modal"
+				 						data-bs-target="#idModal">아이디 찾기</a></span> /
+				 		<span><a href="#" class="link-secondary" 
+				 						data-bs-toggle="modal"
+				 						data-bs-target="#passwordModal">비밀번호 찾기</a></span> /
+				 		<span><a href="/register" class="link-secondary" > 회원가입</a></span>
+				 	</small>
+				</div>
+			</form>
+		</div>
+		<div class="border-line">
+			<hr>
+		</div>
+		<div class="other-input-box">
+			<!--  나중에 링크 넣어야 됨 -->
+			<!-- 카카오 로그인 -->
+			<a href="/oauth2/authorization/kakao" class="kakao-login-button">
+				<img class="kakao-login-img" src="image/login/kakao_login_button_korean.png">
+			</a>
+			<!-- 네이버 로그인 -->
+			<a href="/oauth2/authorization/naver" class="naver-login-button">
+				<img class="naver-login-img" src="image/login/naver_login_button.png">
+			</a>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="idModal"  tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" >아이디 찾기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-floating">
+			  <input id="modal_email1"type="text" class="form-control modal_nickname"  placeholder="id">
+			  <label for="floatingInput">이메일</label>
+			</div>
+			<div class="simple_modal_errorMsg1"></div>
+	      </div>
+	      <div class="modal-footer">
+	       	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	         <button id="goNext1" type="button" class="btn btn-primary"
+	         	  data-bs-target="#emailModal" onclick="setTimerAndEmailVerification(1)">인증번호 발송</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="passwordModal" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" >비밀번호 찾기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-floating" style="margin-bottom: 5%;">
+	        <input id="modal_id" type="text" class="form-control modal_nickname"  placeholder="id">
+			  <label for="form-control">아이디</label>
+			  </div>
+			   <div class="form-floating">
+			  <input id="modal_email2" type="text" class="form-control modal_nickname"  placeholder="email">
+			  <label for="form-control">이메일</label>
+			</div>
+			<br>
+			<div class="simple_modal_errorMsg2"></div>
+	      </div>
+	      <div class="modal-footer">
+	       	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	         <button id="goNext2" type="button" class="btn btn-primary"
+	         	 data-bs-target="#emailModal"  onclick="setTimerAndEmailVerification(2)">인증번호 발송</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="emailModal" data-bs-backdrop="static" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" >인증번호 입력</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-floating">
+			  <input id="verifyNumber" type="text" class="form-control modal_nickname"  placeholder="number">
+			  <label for="floatingInput">인증번호</label>
+			  <small>해당 <b style="color:red;">이메일</b>로 인증번호를 보냈습니다</small>
+			  <small class="timer">3:00</small>
+			  <div class="simple_modal_errorMsg3" style="color:red"><b>인증번호</b>가 올바르지 않습니다.</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	       	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	         <button id="verifyButton" type="button" class="btn btn-primary" 
+	         			onclick="setTimerAndEmailVerification(3)">인증완료</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

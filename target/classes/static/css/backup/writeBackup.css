@@ -1,0 +1,302 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MangoDdobak-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.main-background{
+	background-size: 81.25em 62.5em;
+    position: absolute;
+    margin:5%;
+    background-image: url(/image/background/black.png);
+    background-repeat: no-repeat;
+    width:1300px;
+	height:1000px;
+}
+.main-box{
+    position: absolute;
+    left: 50px;
+    top: 160px;
+    /*
+    border:1px solid black;
+    */
+}
+.content-title{
+	position:relative;
+    left: 330px;
+    top: 40px;
+    font-family:'Cafe24Ssurround';
+    font-size: 4.5rem;
+}
+/* ------------- 글쓰기 박스 ------------------*/
+.write-box{
+	position:relative;
+	left: 50px;
+    top: 100px;
+     width: 430px;
+    height: 470px;
+    /*
+     border:1px solid black;
+     */
+    border-radius: 3px;
+    animation: fadeInDown 1s;
+}
+
+.size-indicator{
+	position:relative;
+    left: 14px;
+    top: 7px;
+	z-index:3;
+}
+input.title{
+	font-family:MangoDdobak-B;
+	font-size: 15px;	
+}
+/*
+div.title{
+    height: 80px;
+}
+*/
+
+.content{
+	font-family:Ownglyph_ryuttung-Rg;
+	font-size: 25px;
+	height: 378px;
+	resize:none;
+	-ms-overflow-style:none;
+	scrollbar-width:none;
+}
+.content::-webkit-scrollbar{
+	display:none;
+}
+/* ------------- 글쓰기 박스 ------------------*/
+/* ------------- 이미지 박스  ---------------- */
+.upload{
+	position:relative;
+    left: -10px;
+    width: 180px;
+    height: 50px;
+    padding-top: 10px;
+    margin: 10px;
+    font-size:23px;
+    text-align:center;
+	background-color:#F6BB43;
+	border-color:red;
+	border-radius:5px;
+	color:black;
+}
+.upload:hover{
+	background-color:orange;
+	color:white;
+}
+.image-box{
+	position:relative;
+      left: 520px;
+       top: -370px;
+       width: 390px;
+       height: 510px;
+       /*
+     border:1px solid black;
+     */
+    border-radius: 3px;
+    animation: fadeInDown 1s;
+}
+.preview{
+    width: 400px;
+    height: 400px;
+    border:3px solid black;
+    border-radius: 10px;
+}
+.carousel-indicators{
+    bottom: -18px;
+}
+input[type='file']{
+	display:none;
+}
+.carousel{
+	display:none;
+}
+.icon_img_1{
+	position:relative;
+    left: 113px;
+   top: 113px;
+    z-index: 3;
+    width: 170px;
+    height: 80px;
+}
+.small-info{
+    margin-left: 5px;
+}
+#deleteBtn{
+	position:relative;
+	background-color:#f05650;
+	left: -10px;
+	color:white;
+}
+#deleteBtn:hover{
+	transition:0.5s;
+	background-color:red;
+}
+/* ------------- 이미지 박스  ---------------- */
+/* ------------- 스티커 박스  ---------------- */
+.sticker-box-option{
+	position:relative;
+    left: 942px;
+   top: -897px;
+}
+.sticker-box-option button{
+	border-radius:15px;
+	background-color:#E2E2E2;
+    width: 120px;
+    height: 50px;
+}
+/* 초반엔 슬라이드형식으로 보여줌 */
+#grid{
+	background-color:#E2E2E2;
+}
+.grid{
+	display:none;
+}
+
+.sticker-box-option button svg{
+	width:30px;
+	height:30px;
+}
+.sticker-box{
+	animation: fadeInDown 1s;
+	position:relative;
+   left: 943px;
+      top: -887px;
+     width: 250px;	
+    height: 470px;
+    border: 1px solid black;
+    border-radius:5px;
+    overflow:scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.sticker-box::-webkit-scrollbar {
+    display: none; 
+}
+.sticker-header{
+	display:block;
+	padding-left:5px;
+	margin:5px;
+	
+	background-color:gray;
+	color:white;
+	
+	font-family:'GmarketSansMedium';
+	font-size:25px;
+      width: 233px;
+}
+ #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+ul { list-style-type:none }
+
+.sticker-component {display:none;}
+
+.sticker-component li { margin-top:5px; }
+
+img.sticker-img{
+    width: 100px;
+   height: 110px;
+}
+
+img.sticker-img:hover {
+	border:1px solid red;
+}
+
+
+ input[type='radio']{
+	display:none;
+}
+
+/* ------------- 스티커 박스  ---------------- */
+/* ------------- footer --------*/
+.isPublic{
+	position:relative;
+    left: 60px;
+    top: -867px;
+}
+
+.isPublic .form-check-input{
+    width: 70px;
+    height: 30px;
+}
+.isPublic label{
+    margin-left: 15px;
+    font-size: 27px;
+}
+ 
+ .isPublic label:hover{
+    -webkit-text-stroke: 1px blue;
+}
+.tag{
+	 position: relative;
+      left: 405px;
+    top: -997px;
+}
+
+.load-temp{
+    position: relative;
+    left: 320px;
+    top: -949px;
+}
+.cancel{
+	position:relative;
+    left: 938px;
+    top: -976px;
+}
+.cancel > a{
+	text-decoration:none;
+}
+
+.cancel > a:hover {
+	color:gray;
+}
+.save-temp{
+	position:relative;
+    left: 994px;
+    top: -1009px;
+}
+.submit{
+	position:relative;
+    left: 1100px;
+    top: -1048px;
+}
+
+.clicked{
+     color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+}
+@keyframes fadeInDown {
+       0% {
+           opacity: 0;
+           transform: translate3d(0, -100%, 0);
+       }
+       to {
+           opacity: 1;
+           transform: translateZ(0);
+       }
+   }

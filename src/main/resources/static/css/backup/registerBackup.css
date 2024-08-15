@@ -1,0 +1,120 @@
+
+/* 나중에 되면 반응형으로 제작 
+@media screen{
+	.main-background{
+		width:85%;
+		height:85%;
+	}
+}
+*/
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+h1{
+	font-size: 60px;
+	font-family: 'Cafe24Ssurround';
+}
+.main-background{
+	background-size: 1300px 1000px;
+    position: absolute;
+    margin: 50px;
+    background-image: url(../image/background/black.png);
+    background-repeat: no-repeat;
+    width: 1310px;
+    height: 1030px;
+}
+.header{
+	position: relative;
+    left: 540px;
+    top: 150px;
+}
+.logo-typo{
+	position: relative;
+   left: -430px;
+    top: 0px;
+}
+.input-group{
+	position:relative;
+    width:400px;
+    height: 40px;
+}
+.username{
+	left: 620px;
+    top: 20px;
+}
+.email{
+	left: 620px;
+    top: 20px;
+}
+.email-check{
+	left: 620px;
+    top: 20px;
+}
+.password{
+	left: 620px;
+    top: 20px;
+}
+.password-check{
+	left: 620px;
+    top: 20px;
+}
+.preview-box{
+	position:relative;
+	display:flex;
+    left: 340px;
+    top: 220px;
+	width:160px;
+	height:160px;
+	
+	border:1px solid black;
+	border-radius:100px;
+	
+	overflow:hidden;
+}
+.btn-upload {
+    position: relative;
+    left: 340px;
+   top: 240px;
+   width: 161px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+.img-info{
+    position: relative;
+    left: 335px;
+    top: 245px;
+}
+
+#file {
+  display: none;
+}
+.email-checked-symbol{
+	position:relative;
+    left: 1040px;
+    top: 40px;
+}
+.input-error-msg{
+	position:relative;
+    left: 750px;
+    top: 270px;
+}
+button[type="submit"]{
+	position: relative;
+   left: 620px;
+    top: 20px;
+    box-shadow: 2px 2px 5px #000;
+}

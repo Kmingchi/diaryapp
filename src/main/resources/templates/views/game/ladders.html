@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 사다리 타기 </title>
+<link rel="stylesheet" href="/css/game/gamedesign.css">
+</head>
+<body>
+	<div class="container">
+        <div class="choice-buttons">
+            <button class="choice-button" id="choice1" onclick="selectLadder(1)">1번</button>
+            <button class="choice-button" id="choice2" onclick="selectLadder(2)">2번</button>
+            <button class="choice-button" id="choice3" onclick="selectLadder(3)">3번</button>
+            <button class="choice-button" id="choice4" onclick="selectLadder(4)">4번</button>
+        </div>
+        <div class="ladder-container">
+            <div class="ladder-line"></div>
+            <div class="ladder-line"></div>
+            <div class="ladder-line"></div>
+            <div class="ladder-line"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-step"></div>
+            <div class="ladder-dot" id="ladderDot"></div>
+        </div>
+        <div class="result-box">
+            <span class="result" id="result1">결과</span>
+            <span class="result" id="result2">결과</span>
+            <span class="result" id="result3">결과</span>
+            <span class="result" id="result4">결과</span>
+        </div>
+        <div class="footer" id="foot">
+	   		<button onclick="window.location.href='game'" class="homebtn"> <img src="../../../../image/icons/home.svg" id="home"> </button>
+		</div>
+    </div>
+    
+    <script src="javascript/game/game.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+</html>

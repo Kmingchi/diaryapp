@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body {
+    background-image: url("/image/background/light-b.png");
+    background-repeat : repeat;	
+}
+
+/* 스케치북 */
+.sketch {
+	width : 85%;
+	height : 85%;
+	position: absolute;
+    top: 53%;
+	left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* 네비게이션 바 - 상단바 */
+.navbar{
+    background-color : #F6F6F6 !important;
+}
+
+/* 네비게이션 요소 */
+li {
+	text-align : center;
+}
+
+.dropdown {
+	z-index : 1000;
+}

@@ -1,0 +1,246 @@
+@font-face {
+	font-family: 'Cafe24Ssurround';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+iframe {
+	border : none;
+	width : 100%;
+	height : 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index : 1;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+	font-family: 'S-CoreDream-3Light';
+	text-align : center;
+	font-size : 40px;
+}
+
+#login-page{
+	z-index : 10;
+}
+
+#chat-page {
+    width: 75%;  /* Adjust the width of the chat page */
+    height: 65%; /* Adjust the height of the chat page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 7px;
+    z-index : 10;
+    
+    position : absolute;
+    top : 24%;
+    left : 12%;
+    transform : (-50%, -50%);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius : 7px;
+}
+
+.sidebar {
+    width: 25%;
+    background: #fff;
+    padding: 10px;
+    border-radius : 7px;
+    overflow-y: auto;
+    margin-right : 50px;
+}
+
+.sidebar::-webkit-scrollbar {
+	display : none;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 25px;
+    cursor: pointer;
+    border-bottom : 2px solid lightgray;
+}
+
+.sidebar ul li:hover {
+    background: #ddd;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color : #fff;
+}
+
+.chat-header {
+    background: #007bff;
+    color: #fff;
+    padding: 15px;
+}
+
+.chat-window {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    background: #fff; /* Optional: Add a semi-transparent background to the chat container */
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    background: #35B62C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.chat-input button:hover {	
+	background-color : #119208;
+}
+
+.message {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message.sent {
+    background: #C5E396;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message.received {
+    background: #D5D5D5;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right : 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    bottom: 100%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    background-color: #35B62C;
+}
+
+.dropbtn:hover {	
+	background-color : #119208;
+}
+
+#map {
+    width: 100%;
+    height: 200px; /* 반으로 줄인 크기 */
+    display: none;
+}
+
+#pac-input {
+    margin-top: 10px;
+    width: 300px;
+    display: none;
+}
+
+.map-container {
+	position: relative;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .container {
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+    }
+
+    .sidebar {
+		width: 100%;
+		border-right: none;
+		border-bottom: 1px solid #ccc;
+    }
+
+    .main-content {
+		width: 100%;
+    }
+}
