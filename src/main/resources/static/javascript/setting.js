@@ -190,13 +190,13 @@ function showContent(type) {
 			    <div class="friend-management-container">
 			        <h2>Friend</h2>
 			        <div class="friend-option">
-			            <span>친구 목록</span>
+			            <button>친구 목록</button>
 			        </div>
 			        <div class="friend-option">
-			            <span>친구 요청 관리</span>
+			            <button>친구 요청 관리</button>
 			        </div>
 			        <div class="friend-option">
-			            <span>차단 친구 관리</span>
+			            <button>차단 친구 관리</button>
 			        </div>
 			        <div class="friend-option">
 			            <span>자동 친구 추가</span>
