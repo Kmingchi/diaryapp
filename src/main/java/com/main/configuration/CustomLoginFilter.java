@@ -2,9 +2,9 @@ package com.main.configuration;
 
 
 
+import java.io.IOException;
 import java.time.Duration;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,11 +12,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.main.user.dto.User;
-import com.main.user.service.CustomUserDetailsService;
 import com.main.util.CookieUtil;
 import com.main.util.JwtUtil;
 
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -60,5 +60,30 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
     	log.info("로그인 실패");
     	response.setStatus(401);
+    }
+    
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+        if ("POST".equalsIgnoreCase(request.getMethod()) && "/logout".equals(request.getServletPath())) {
+            log.info("로그아웃 처리");
+            
+            // JWT 토큰 무효화 (블랙리스트에 추가하는 등의 방법)
+            String token = jwtUtil.extractTokenFromRequest(request);
+            if (token != null) {
+                jwtUtil.invalidateToken(token);
+            }
+            
+            // 쿠키에서 Authorization 삭제
+            cookieUtil.deleteCookie(request, response, "Authorization");
+            
+            // 응답 헤더에서 Authorization 제거
+            response.setHeader("Authorization", "");
+            
+            // 로그아웃 성공 응답
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("로그아웃 되었습니다.");
+            return;
+        }
+        
+        chain.doFilter(request, response);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -20,6 +21,8 @@ import com.main.oauth2.service.CustomOAuth2UserService;
 import com.main.util.CookieUtil;
 import com.main.util.JwtUtil;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 
@@ -30,6 +33,7 @@ public class SecurityConfig {
 	
 	private final CustomOAuth2UserService customOAuth2UserService;
 	private final AuthenticationConfiguration authenticationConfiguration;
+	private final CustomLogoutHandler customLogoutHandler;
 	private final JwtUtil jwtUtil;
 	private final CookieUtil cookieUtil;
 	
@@ -86,11 +90,12 @@ public class SecurityConfig {
 				.requestMatchers("/admin").hasRole("ADMIN")
 				.anyRequest().authenticated()
 				)
-				.logout(logout->logout
-						.logoutUrl("/logout")
-						.permitAll()
-						.logoutSuccessUrl("/")
-				);
+				.logout(logout -> logout
+                .logoutUrl("/logout")
+                .addLogoutHandler(customLogoutHandler)
+                .logoutSuccessUrl("/")
+                .permitAll()
+        );
 			
 	    http.headers()
 	    		.frameOptions()
