@@ -1,14 +1,12 @@
 package com.main.util;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.main.properties.JwtProperties;
 
@@ -18,7 +16,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -26,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class JwtUtil {
 	
 	 private final JwtProperties jwtProperties;
+	 
+	 private final Set<String> blacklistedTokens = ConcurrentHashMap.newKeySet();
 	 
 	 public String getUsernameUsingCookie(HttpServletRequest request) {
 		 Cookie token=CookieUtil.findCookie("Authorization", request);
@@ -70,4 +69,46 @@ public class JwtUtil {
                 .signWith(SignatureAlgorithm.HS256,jwtProperties.getSecretKey())
                 .compact();
     }
+    
+    public String extractTokenFromRequest(HttpServletRequest request) {
+        // 먼저 Authorization 헤더에서 토큰을 찾습니다
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        
+        // 헤더에 없다면 쿠키에서 토큰을 찾습니다
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("Authorization".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        
+        // 토큰을 찾지 못했다면 null을 반환합니다
+        return null;
+    }
+    
+    
+    public void invalidateToken(String token) {
+        if (isValidToken(token)) {
+            blacklistedTokens.add(token);
+        }
+    }
+
+    // 선택적: 주기적으로 만료된 토큰을 블랙리스트에서 제거하는 메서드
+    public void cleanupBlacklist() {
+        Date now = new Date();
+        blacklistedTokens.removeIf(token -> {
+            try {
+                Claims claims = getClaims(token);
+                return claims.getExpiration().before(now);
+            } catch (Exception e) {
+                return true; // 파싱 불가능한 토큰은 제거
+            }
+        });
+    }
+    
 }
